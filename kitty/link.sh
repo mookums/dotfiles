@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CONFIG_FILE=config.fish
-FILE_PATH=~/.config/fish/$CONFIG_FILE
+CONFIG_FILE=kitty.conf
+FILE_PATH=~/.config/kitty/$CONFIG_FILE
 
 if test -f $FILE_PATH || test -h $FILE_PATH; then 
-	echo "Updating Fish Config"
+	echo "Updating Kitty Config"
 	ln -sf $(pwd)/$CONFIG_FILE $FILE_PATH
 else
-	echo "Installing Fish Config"
+	echo "Installing Kitty Config"
 	ln -s $(pwd)/$CONFIG_FILE $FILE_PATH
 fi
