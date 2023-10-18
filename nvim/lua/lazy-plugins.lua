@@ -17,7 +17,6 @@ require("lazy").setup({
 	-- Color Schemes
 	{'stevedylandev/flexoki-nvim', name = 'flexoki'},
 	-- Plugins
-	{"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
 	{'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	 dependencies = {'nvim-lua/plenary.nvim' }
  	},
@@ -25,11 +24,18 @@ require("lazy").setup({
 	 dependencies = {"nvim-tree/nvim-web-devicons"}
 	},
 	-- Language Support
-	"neovim/nvim-lspconfig",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/nvim-cmp", 
-	{"quangnguyen30192/cmp-nvim-ultisnips",
-	 dependencies = {"SirVer/ultisnips"}
+	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',
+	 dependencies = {
+		-- LSP Support
+		{'williamboman/mason.nvim'},
+		{'williamboman/mason-lspconfig.nvim'},
+		{'neovim/nvim-lspconfig'},
+		-- AutoComplete
+		{'hrsh7th/cmp-nvim-lsp'},
+		{'hrsh7th/nvim-cmp'},
+		-- Snippets
+		{'L3MON4D3/LuaSnip'},
+	 },
  	},
-	"nvim-treesitter/nvim-treesitter"
+	{"nvim-treesitter/nvim-treesitter", run = ':TSUpdate'},
 })
