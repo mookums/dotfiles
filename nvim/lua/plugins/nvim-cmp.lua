@@ -1,11 +1,14 @@
 local cmp = require('cmp')
 
+require('cmp_nvim_ultisnips').setup{}
+
 cmp.setup({
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
+     snippet = {
+	expand = function(args)
+	  vim.fn["UltiSnips#Anon"](args.body)
+	end,
+     },
+
      mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -17,7 +20,7 @@ cmp.setup({
         { name = 'nvim_lsp' },
         -- { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
+        { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
       }, {
         { name = 'buffer' },

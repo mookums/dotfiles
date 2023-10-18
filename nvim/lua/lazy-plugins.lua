@@ -14,18 +14,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	-- Color Schemes
+	{'stevedylandev/flexoki-nvim', name = 'flexoki'},
 	-- Plugins
 	{'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	 dependencies = {'nvim-lua/plenary.nvim' }
  	},
-	{'stevedylandev/flexoki-nvim', name = 'flexoki'},
 	{"nvim-tree/nvim-tree.lua", 
 	 dependencies = {"nvim-tree/nvim-web-devicons"}
 	},
 	-- Language Support
 	"neovim/nvim-lspconfig",
-	{"hrsh7th/cmp-nvim-lsp",
-	 dependencies = {"hrsh7th/nvim-cmp"}
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/nvim-cmp", 
+	{"quangnguyen30192/cmp-nvim-ultisnips",
+	 dependencies = {"SirVer/ultisnips"}
  	},
 	"nvim-treesitter/nvim-treesitter"
 })
