@@ -5,11 +5,8 @@ require('lazy-plugins')
 require('plugin-init')
 
 -- vim.cmd('colorscheme flexoki')
-vim.cmd('colorscheme tokyonight-night')
+-- vim.cmd('colorscheme tokyonight')
+vim.cmd('colorscheme kanagawa')
 
 -- Set
 require('set')
-
--- Set Color Scheme
--- vim.cmd('colorscheme flexoki')
--- vim.cmd('colorscheme tokyonight-night')
