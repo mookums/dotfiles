@@ -4,4 +4,3 @@ end
 
 
 fish_add_path /opt/zig/
-fish_add_path /opt/zls/
