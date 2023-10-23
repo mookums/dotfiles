@@ -3,4 +3,9 @@ if status is-interactive
 end
 
 
+# Zig
 fish_add_path /opt/zig/
+
+# OCaml
+source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
