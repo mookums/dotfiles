@@ -15,8 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- Color Schemes
-	{'stevedylandev/flexoki-nvim', name = 'flexoki'},
-    {'folke/tokyonight.nvim', priority = 1000},
     {'rebelot/kanagawa.nvim'},
 	-- Plugins
 	{'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -25,6 +23,7 @@ require("lazy").setup({
 	{"nvim-tree/nvim-tree.lua", 
 	 dependencies = {"nvim-tree/nvim-web-devicons"}
 	},
+    {'nvim-lualine/lualine.nvim'},
 	-- Language Support
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',
 	 dependencies = {
