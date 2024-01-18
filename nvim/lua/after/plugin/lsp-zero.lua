@@ -23,7 +23,8 @@ require('mason-lspconfig').setup({
 	"jdtls", -- Java
 	"tsserver", -- JS/TS
 	"clangd", -- C
-    	"svelte", -- Svelte
+    "svelte", -- Svelte
+    "omnisharp", -- Omnisharp
   },
   handlers = {
     lsp_zero.default_setup,

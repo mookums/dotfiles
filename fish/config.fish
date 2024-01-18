@@ -5,9 +5,6 @@ end
 # /usr/local/bin
 fish_add_path /usr/local/bin/
 
-# Zig
-fish_add_path /opt/zig/
-
 # For jdtls (with Lombok)
 set -gx JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/eclipse/lombok.jar"
 
@@ -15,4 +12,4 @@ set -gx JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/eclipse/lombok.jar"
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # Kiboigo Source
-source ~/Kiboigo/kiboigo.fish
+source ~/.kiboigo/kiboigo.fish
