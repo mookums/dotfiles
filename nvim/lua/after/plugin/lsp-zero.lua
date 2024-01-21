@@ -25,6 +25,8 @@ require('mason-lspconfig').setup({
 	"clangd", -- C
     "svelte", -- Svelte
     "omnisharp", -- Omnisharp
+    "rust_analyzer", -- Rust
+    "gopls" -- Go
   },
   handlers = {
     lsp_zero.default_setup,
