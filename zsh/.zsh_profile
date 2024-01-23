@@ -1,5 +1,6 @@
-# Set Shell
 export SHELL="/usr/bin/zsh"
+export GIT_EDITOR="nvim"
+export DOTFILES="$HOME/dotfiles"
 
 # For JDTLS LSP
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/eclipse/lombok.jar"
