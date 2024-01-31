@@ -70,7 +70,7 @@ ZSH_THEME="muki"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl docker)
+plugins=(git kubectl docker zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 

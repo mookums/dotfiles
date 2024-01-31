@@ -16,7 +16,7 @@ _fishy_collapsed_wd() {
   echo "${(j:/:)pwd}"
 }
 
-local user_color='blue'; [ $UID -eq 0 ] && user_color='red'
+local user_color='33'; [ $UID -eq 0 ] && user_color='red'
 PROMPT='%F{$user_color}%n%f@%m %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 
