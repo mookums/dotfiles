@@ -1,3 +1,8 @@
 #!/bin/bash
 
+# Run any .screenlayout first.
+for f in $HOME/.screenlayout/*.sh; do
+    bash "$f"
+done
+
 feh --no-fehbg --bg-fill $HOME/.wallpaper/thegulfstream.jpg
