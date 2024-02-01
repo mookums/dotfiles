@@ -18,3 +18,6 @@
 
 # Start Polybar
 polybar &
+
+# Set Wallpaper
+sh $HOME/.fehbg &
