@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh --nofehbg --bg-tile $HOME/.wallpaper/lambda.jpg
