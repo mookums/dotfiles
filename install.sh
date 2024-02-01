@@ -6,3 +6,4 @@ stow nvim
 stow wallpaper
 stow feh
 stow openbox
+stow polybar
