@@ -21,6 +21,3 @@ polybar &
 
 # Set Wallpaper
 sh $HOME/.fehbg &
-
-# Start xscreensaver
-xscreensaver --no-splash &
