@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Run any .screenlayout first.
+# Run any .screenlayout first. This prevents weird wallpaper issues.
+#
+# It is important to save your arandr config in the default ~/.screenlayout/ folder.
 for f in $HOME/.screenlayout/*.sh; do
     bash "$f"
 done
