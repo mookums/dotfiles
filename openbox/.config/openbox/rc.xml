@@ -152,9 +152,9 @@
      cases. -->
   <margins>
     <top>5</top>
-    <bottom>10</bottom>
-    <left>10</left>
-    <right>10</right>
+    <bottom>0</bottom>
+    <left>0</left>
+    <right>0</right>
   </margins>
   <dock>
     <position>TopLeft</position>
@@ -333,6 +333,37 @@
     <keybind key="Print">
       <action name="Execute">
         <command>scrot</command>
+      </action>
+    </keybind>
+    <!-- Media Keys -->
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <command>pactl set-sink-mute 0 toggle</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <command>sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <command>sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+       <action name="Execute">
+         <command>playerctl play-pause</command>
+       </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+    <action name="Execute">
+        <command>playerctl previous</command>
+    </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <command>playerctl next</command>
       </action>
     </keybind>
   </keyboard>
