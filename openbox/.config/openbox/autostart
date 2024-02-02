@@ -16,8 +16,8 @@
 #
 #xfce-mcs-manager &
 
-# Start Polybar
-polybar &
-
 # Set Wallpaper
 sh $HOME/.fehbg &
+
+# Start Polybar
+polybar &
