@@ -21,3 +21,6 @@ sh $HOME/.fehbg &
 
 # Start Polybar
 polybar &
+
+# Start Power Manager
+xfce4-power-manager &
