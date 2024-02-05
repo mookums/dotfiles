@@ -151,7 +151,7 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>5</top>
+    <top>0</top>
     <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
@@ -352,14 +352,14 @@
       </action>
     </keybind>
     <keybind key="XF86AudioPlay">
-       <action name="Execute">
-         <command>playerctl play-pause</command>
-       </action>
+      <action name="Execute">
+        <command>playerctl play-pause</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioPrev">
-        <action name="Execute">
-            <command>playerctl previous</command>
-        </action>
+      <action name="Execute">
+        <command>playerctl previous</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
@@ -367,14 +367,14 @@
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
-        <action name="Execute">
-            <command>light -A 10</command>
-        </action>
+      <action name="Execute">
+        <command>light -A 10</command>
+      </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
-        <action name="Execute">
-            <command>light -U 10</command>
-        </action>
+      <action name="Execute">
+        <command>light -U 10</command>
+      </action>
     </keybind>
   </keyboard>
   <mouse>
