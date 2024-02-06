@@ -335,6 +335,11 @@
         <command>scrot</command>
       </action>
     </keybind>
+    <keybind key="Super_L">
+      <action name="Execute">
+        <command>rofi -show drun -show-icons -columns 3 -lines 9</command>
+      </action>
+    </keybind>
     <!-- Media Keys -->
     <keybind key="XF86AudioMute">
       <action name="Execute">
