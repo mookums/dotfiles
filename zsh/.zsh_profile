@@ -15,3 +15,6 @@ fi
 if test -f "$KIBOIGO_ZSH"; then 
     source "$KIBOIGO_ZSH"
 fi
+
+# Add helpers to PATH
+export PATH=$HOME/.dotfiles/helpers/:$PATH
