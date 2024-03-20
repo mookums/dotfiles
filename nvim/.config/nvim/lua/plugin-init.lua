@@ -1,3 +1,4 @@
+require('after/plugin/harpoon')
 require('after/plugin/telescope')
 require('after/plugin/treesitter')
 require('after/plugin/nvim-tree')

@@ -1,6 +1,6 @@
 export SHELL="/usr/bin/zsh"
 export GIT_EDITOR="nvim"
-export DOTFILES="$HOME/dotfiles"
+export DOTFILES="$HOME/.dotfiles"
 KIBOIGO_ZSH="$HOME/.kiboigo/kiboigo.zsh"
 
 # For JDTLS LSP
@@ -17,4 +17,4 @@ if test -f "$KIBOIGO_ZSH"; then
 fi
 
 # Add helpers to PATH
-export PATH=$HOME/.dotfiles/helpers/:$PATH
+export PATH=$DOTFILES/helpers/:$PATH
