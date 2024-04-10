@@ -1,4 +1,7 @@
 configuration {
+    modes: "drun";
     show-icons: true;
     icon-theme: "Papirus";
 }
+
+@theme "style-4.rasi"
