@@ -64,6 +64,12 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -columns 3 -lines 9
 
+# no border
+default_border none
+
+# gaps
+gaps inner 10
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
