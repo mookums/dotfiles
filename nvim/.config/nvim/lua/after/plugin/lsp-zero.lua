@@ -18,16 +18,9 @@ cmp.setup({
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-        "zls",           -- Zig
-        "ocamllsp",      -- OCaml
-        "jdtls",         -- Java
-        "tsserver",      -- JS/TS
         "clangd",        -- C
-        "svelte",        -- Svelte
-        "omnisharp",     -- Omnisharp
         "rust_analyzer", -- Rust
         "lua_ls",        -- Lua
-        "gopls"          -- Go
     },
     handlers = {
         lsp_zero.default_setup,
