@@ -59,9 +59,6 @@ floating_modifier $mod
 # pass t to start twm, anything else to start tmux.
 bindsym $mod+Return exec i3-sensible-terminal -e term-start.sh 
 
-# start a terminal
-bindsym $mod+t exec i3-sensible-terminal 
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
