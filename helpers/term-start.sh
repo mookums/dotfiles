@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -n 1 -p "[t]wm | tmu[x] | [g]eneric? " start
+read -n 1 -p "[t]wm | tmu[x] | [a]ttach | [g]eneric? " start
 # Clears the terminal.
 tput reset
 
@@ -10,6 +10,9 @@ case $start in
         ;;
     [xX])  
         tmux
+        ;;
+    [aA])
+        tmux attach || tmux
         ;;
     [$'\e'])
         exit 0
