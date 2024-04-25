@@ -11,7 +11,11 @@ case $start in
     [xX])  
         tmux
         ;;
+    [$'\e'])
+        exit 0
+        ;;
     *)  
+        echo $start
         $SHELL
         ;;
 esac
