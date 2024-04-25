@@ -1,12 +1,17 @@
 #!/bin/bash
 
-read -p "[t]wm or tmu[x]? " start
+read -n 1 -p "[t]wm | tmu[x] | [g]eneric? " start
+# Clears the terminal.
+tput reset
 
 case $start in
     [tT] )
         twm
         ;;
-    *)  
+    [xX])  
         tmux
+        ;;
+    *)  
+        $SHELL
         ;;
 esac
