@@ -15,7 +15,6 @@ case $start in
         exit 0
         ;;
     *)  
-        echo $start
         $SHELL
         ;;
 esac
