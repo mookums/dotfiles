@@ -55,17 +55,18 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 # tiling_drag modifier titlebar
 
-# start a terminal w/ tmux
-bindsym $mod+Return exec i3-sensible-terminal -e tmux
+# start a terminal w/ twm or tmux
+# pass t to start twm, anything else to start tmux.
+bindsym $mod+Return exec i3-sensible-terminal -e term-start.sh 
 
-# start a terminal w/ twm
-bindsym $mod+t exec i3-sensible-terminal -e twm
+# start a terminal
+bindsym $mod+t exec i3-sensible-terminal 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -columns 3 -lines 9
+bindsym $mod+d exec rofi -show drun -show-icons -columns 3 -lines 9
 
 # no border
 default_border none
