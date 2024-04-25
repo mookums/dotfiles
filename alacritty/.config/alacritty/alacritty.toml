@@ -1,0 +1,12 @@
+# Import additional configuration files
+import = ["~/.config/alacritty/kanagawa.toml"]
+
+[env]
+TERM = "alacritty"
+
+[window]
+padding = { x = 4, y = 4 }
+
+[font]
+normal = { family = "JetBrainsMono NFM", style = "Medium" }
+size = 8

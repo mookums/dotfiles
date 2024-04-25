@@ -1,0 +1,15 @@
+# AUtomatically converted from TOML
+import:
+  - ~/.config/alacritty/kanagawa.yml
+env:
+  TERM: alacritty
+window:
+  padding:
+    x: 4
+    y: 4
+font:
+  normal:
+    family: JetBrainsMono NFM
+    style: Medium
+  size: 8
+
