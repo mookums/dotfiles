@@ -22,3 +22,8 @@ export PATH=$DOTFILES/helpers/:$PATH
 
 # Add FPGA OSS Suite to PATH
 export PATH=/opt/oss-cad-suite/bin/:$PATH
+
+# Virtual Env for Python 3
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
