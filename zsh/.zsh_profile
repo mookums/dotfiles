@@ -20,6 +20,9 @@ fi
 # Add helpers to PATH
 export PATH=$DOTFILES/helpers/:$PATH
 
+# Add .local/bin to PATH
+export PATH=$HOME/.local/bin/:$PATH
+
 # Add FPGA OSS Suite to PATH
 export PATH=/opt/oss-cad-suite/bin/:$PATH
 
