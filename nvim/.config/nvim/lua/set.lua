@@ -12,3 +12,5 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.g.mapleader = ","
+
+vim.keymap.set("n", "<leader>do", function() vim.diagnostic.open_float() end)

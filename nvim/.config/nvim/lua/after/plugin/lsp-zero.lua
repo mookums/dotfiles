@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero')
+local lspconfig = require("lspconfig")
 
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
@@ -23,6 +24,31 @@ require('mason-lspconfig').setup({
         "lua_ls",        -- Lua
     },
     handlers = {
+        -- Use Default
         lsp_zero.default_setup,
+        -- For Lua, we want vim as a global
+        ["lua_ls"] = function()
+            lspconfig.lua_ls.setup({
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                },
+            })
+        end,
+        -- For Rust, we want to use Clippy
+        ["rust_analyzer"] = function()
+            lspconfig.rust_analyzer.setup({
+                settings = {
+                    ["rust-analyzer"] = {
+                        check = {
+                            command = "clippy",
+                        }
+                    },
+                },
+            })
+        end
     },
 })
