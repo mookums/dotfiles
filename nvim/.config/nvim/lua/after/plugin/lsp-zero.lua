@@ -22,6 +22,7 @@ require('mason-lspconfig').setup({
         "clangd",        -- C
         "rust_analyzer", -- Rust
         "lua_ls",        -- Lua
+        "zls",           -- Zig
     },
     handlers = {
         -- Use Default
