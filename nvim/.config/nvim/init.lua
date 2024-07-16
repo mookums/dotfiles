@@ -7,5 +7,5 @@ require('lazy-plugins')
 -- Initalize Plugins
 require('plugin-init')
 
-vim.cmd('colorscheme kanagawa')
-
+vim.o.background = "dark"
+vim.cmd('colorscheme kanagawa-dragon')

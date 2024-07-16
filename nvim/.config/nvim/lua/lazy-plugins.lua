@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- Color Schemes
     { 'rebelot/kanagawa.nvim' },
+    { 'ellisonleao/gruvbox.nvim' },
     -- Plugins
     {
         "ThePrimeagen/harpoon",
@@ -31,7 +32,10 @@ require("lazy").setup({
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
-    { 'nvim-lualine/lualine.nvim' },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { "nvim-tree/nvim-web-devicons" }
+    },
     -- Language Support
     {
         'VonHeikemen/lsp-zero.nvim',
