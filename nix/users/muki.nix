@@ -1,4 +1,4 @@
-{ pkgs, stateVersion, self, ... }:
+{ config, pkgs, stateVersion, self, ... }:
 
 {
     home.packages = with pkgs; [
@@ -8,26 +8,45 @@
         polybar
         feh
         firefox
-        # Mason will not work...
-        # We need to manually install the lsp and point lsp-zero to it.
-        neovim
-        clang
         ripgrep
-        cargo
-        clippy
+        neovim
+        vlc
+        flameshot
+        gimp
+        discord
+        spotify
+        arandr
+        obsidian
+        # For GTK themes
+        dconf
+        papirus-icon-theme
+        # Fonts
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
 
     fonts.fontconfig.enable = true;
 
-    xdg.configFile."alacritty".source = self + "/dots/alacritty/.config/alacritty";
-    xdg.configFile."i3".source = self + "/dots/i3/.config/i3";
-    xdg.configFile."nvim" = {
-        source = self + "/dots/nvim/.config/nvim";
-        recursive = true;
+    gtk = {
+        enable = true;
+        iconTheme = {
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
+        };
     };
-    xdg.configFile."rofi".source = self + "/dots/rofi/.config/rofi";
-    home.file.".local/share/rofi".source = self + "/dots/rofi/.local/share/rofi";
+
+    xdg.configFile = {
+    	"alacritty".source = "${self}/dots/alacritty";
+    	"i3".source = "${self}/dots/i3";
+    	"nvim" = {
+     	    source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
+      	    recursive = true;
+    	};
+    	"rofi".source = "${self}/dots/rofi/config";
+    };
+    
+    xdg.dataFile = {
+        "rofi".source = "${self}/dots/rofi/share";
+    };
 
     home.stateVersion = stateVersion;
 }

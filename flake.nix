@@ -6,11 +6,11 @@
 {
     description = "Muki's NixOS :3";
     
-    inputs = rec {
-        nixpkgs.url = "github:nixos/nixpkgs/7e7c39ea35c5cdd002cd4588b03a3fb9ece6fad9";
+    inputs = {
+        nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
         nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-        home-manager.url = "github:nix-community/home-manager";
+        home-manager.url = "github:nix-community/home-manager/release-24.05";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -21,13 +21,16 @@
 
         pkgs = import nixpkgs {
             inherit system;
+            config = {
+                allowUnfree = true;
+            };
         };
 
         utils = import ./nix/utils.nix {
             inherit self home-manager nixpkgs pkgs system stateVersion;
         };
     in
-    rec {
+    {
         nixosConfigurations =
             {
                 albatross = utils.mkComputer {

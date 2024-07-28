@@ -1,9 +1,4 @@
 { pkgs, ... }: {
-    hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-    };
-
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 
@@ -16,8 +11,15 @@
             i3lock
         ];
     };
-    services.libinput.enable = true;
 
+    services.libinput.enable = true;
     sound.enable = true;
-    hardware.pulseaudio.enable = true;
+    hardware.pulseaudio = {
+        enable = true;
+        package = pkgs.pulseaudioFull;
+    };
+
+    environment.systemPackages = with pkgs; [
+        pavucontrol 
+    ];
 }

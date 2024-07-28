@@ -5,14 +5,21 @@
 
             modules = [
                 machineConfig
-		        { system.stateVersion = stateVersion; }
+                ({ config, ... }: {
+                    system.stateVersion = stateVersion;
+                    nix = {
+                        settings = {
+                            experimental-features = [ "nix-command" "flakes" ];  
+                        };
+                    };
+                })
 
                 home-manager.nixosModules.home-manager {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
 		            home-manager.extraSpecialArgs = { inherit self; };
-                    home-manager.users.muki = import ./users/muki.nix {
-                        inherit pkgs stateVersion self;
+                    home-manager.users.muki = { config, ... }: import ./users/muki.nix {
+                        inherit pkgs stateVersion self config;
                     };
                 }
             ];
