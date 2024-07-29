@@ -9,7 +9,6 @@
         twm
         firefox
         ripgrep
-        neovim
         fastfetch
         vlc
         flameshot
@@ -35,6 +34,21 @@
         EDITOR="nvim";
         GIT_EDITOR="nvim";
         DOTFILES="$HOME/.dotfiles";
+    };
+
+    programs.neovim = {
+        enable = true;
+        package = pkgs.neovim-unwrapped;
+        plugins = [
+            # Prefer just using Lazy but TreeSitter is an exception.
+            pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+        ];
+        extraPackages = with pkgs; [
+            # Lua
+            luarocks
+            luajitPackages.jsregexp
+            lua-language-server
+        ];
     };
 
     programs.zsh = {

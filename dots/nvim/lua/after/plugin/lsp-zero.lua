@@ -13,23 +13,25 @@ cmp.setup({
     },
 })
 
-lspconfig.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
-    },
-})
+local function setup_lsp_servers()
+    -- Setup whichever we have in our path.
+    -- This makes it easy to use nix shells and still have LSPs.
+    local servers = {
+        'tsserver',         -- TS/JS
+        'clangd',           -- C/C++
+        'rust_analyzer',    -- Rust
+        'zls',              -- Zig
+        'jdtls',            -- Java
+        'lua_ls'            -- Lua
+    }
 
-lspconfig.rust_analyzer.setup({
-    settings = {
-        ["rust-analyzer"] = {
-            check = {
-                command = "clippy",
-            }
-        },
-    },
-})
+    for _, server in ipairs(servers) do
+        local executable = vim.fn.executable(server)
+        if executable then
+            lspconfig[server].setup {}
+        end
+    end
+end
 
+-- Setup LSP Servers
+setup_lsp_servers()
