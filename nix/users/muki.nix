@@ -17,6 +17,8 @@
         spotify
         obsidian
         hotspot
+        freecad
+        kicad
         # Video
         obs-studio
         kdenlive
@@ -41,13 +43,17 @@
         package = pkgs.neovim-unwrapped;
         plugins = [
             # Prefer just using Lazy but TreeSitter is an exception.
-            pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+            # pkgs.vimPlugins.nvim-treesitter.withAllGrammars
         ];
         extraPackages = with pkgs; [
             # Lua
             luarocks
             luajitPackages.jsregexp
             lua-language-server
+            # Nix
+            nil
+            # For TreeSitter?
+            gcc
         ];
     };
 
@@ -86,6 +92,7 @@
     	};
         "polybar".source = "${self}/dots/polybar";
     	"rofi".source = "${self}/dots/rofi/config";
+        "tmux".source = "${self}/dots/tmux/";
     };
     
     xdg.dataFile = {
@@ -94,7 +101,6 @@
 
     home.file.".fehbg".source = "${self}/dots/feh/.fehbg";
     home.file.".wallpaper".source = "${self}/dots/wallpaper";
-    home.file.".tmux.conf".source = "${self}/dot/tmux/.tmux.conf";
 
     home.stateVersion = stateVersion;
 }

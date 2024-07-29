@@ -26,6 +26,8 @@
         playerctl
         pavucontrol 
         xfce.xfce4-power-manager
+        xfce.thunar
+        xfce.thunar-volman
         feh
         arandr
         xclip
