@@ -7,20 +7,14 @@
         enable = true;
         extraPackages = with pkgs; [
             dex
-            rofi
+            dunst
             i3status
             i3lock
-            dunst
-            xfce.xfce4-power-manager
-            polybar
-            feh
-            arandr
-            xclip
-            light
         ];
     };
 
     services.libinput.enable = true;
+
     sound.enable = true;
     hardware.pulseaudio = {
         enable = true;
@@ -28,7 +22,14 @@
     };
 
     environment.systemPackages = with pkgs; [
+        rofi
         playerctl
         pavucontrol 
+        xfce.xfce4-power-manager
+        feh
+        arandr
+        xclip
+        light
+        (polybar.override { pulseSupport = true; })
     ];
 }

@@ -11,7 +11,11 @@
     	isNormalUser = true;
         shell = pkgs.zsh;
         home = "/home/muki";
-        extraGroups = [ "wheel" ];
+        extraGroups = [ 
+            "wheel" 
+            "networkmanager"
+            "video"
+        ];
     };
 
     environment.systemPackages = with pkgs; [

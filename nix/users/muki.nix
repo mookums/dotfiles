@@ -94,6 +94,7 @@
 
     home.file.".fehbg".source = "${self}/dots/feh/.fehbg";
     home.file.".wallpaper".source = "${self}/dots/wallpaper";
+    home.file.".tmux.conf".source = "${self}/dot/tmux/.tmux.conf";
 
     home.stateVersion = stateVersion;
 }
