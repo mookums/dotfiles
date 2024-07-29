@@ -21,6 +21,8 @@
         package = pkgs.pulseaudioFull;
     };
 
+    programs.light.enable = true;
+
     environment.systemPackages = with pkgs; [
         rofi
         playerctl
@@ -31,7 +33,6 @@
         feh
         arandr
         xclip
-        light
         (polybar.override { pulseSupport = true; })
     ];
 }
