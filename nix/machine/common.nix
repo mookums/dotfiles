@@ -5,6 +5,8 @@
     i18n.defaultLocale = "en_US.UTF-8";
 
     services.openssh.enable = true;
+    programs.gnupg.agent.enable = true;
+
     networking.networkmanager.enable = true;
     programs.zsh.enable = true;
 
@@ -12,6 +14,7 @@
     	isNormalUser = true;
         shell = pkgs.zsh;
         home = "/home/muki";
+        initialPassword = "muki";
         extraGroups = [ 
             "wheel" 
             "networkmanager"
@@ -22,7 +25,6 @@
     environment.systemPackages = with pkgs; [
         wget
         curl
-        gnupg
         openssl
     ];
 }
