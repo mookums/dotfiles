@@ -3,7 +3,7 @@
 {
     imports = [
         ./common.nix
-        ./hardware/jupiter.nix
+        /etc/nixos/hardware-configuration.nix
         # Jupiter uses i3.
         ../display/i3.nix
     ];

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Uses FFMPEG to convert OBS recordings for DaVinci Resolve
 extensions=("mkv" "mp4" "MP4")

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 read -n 1 -p "[t]wm | tmu[x] | [a]ttach | [g]eneric? " start
 # Clears the terminal.

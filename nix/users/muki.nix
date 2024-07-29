@@ -5,26 +5,55 @@
         alacritty
         git
         tmux
-        polybar
-        feh
+        fzf
+        twm
         firefox
         ripgrep
         neovim
+        fastfetch
         vlc
         flameshot
         gimp
         discord
         spotify
-        arandr
         obsidian
+        hotspot
+        # Video
+        obs-studio
+        kdenlive
         # For GTK themes
         dconf
         papirus-icon-theme
         # Fonts
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
-
     fonts.fontconfig.enable = true;
+
+    home.sessionVariables = {
+        TERMINAL = "alacritty";
+        SHELL="${pkgs.zsh}/bin/zsh";
+        EDITOR="nvim";
+        GIT_EDITOR="nvim";
+        DOTFILES="$HOME/.dotfiles";
+    };
+
+    programs.zsh = {
+        enable = true;
+        autosuggestion.enable = true;
+        #syntaxHighlighting.enable = true;
+        oh-my-zsh = {
+            enable = true;
+            theme = "muki";
+            custom = "${self}/dots/zsh/.oh-my-zsh/themes";
+            plugins = [ "git" ];
+        };
+        initExtra = ''
+            # Add helpers to PATH
+            export PATH=$DOTFILES/helpers/:$PATH
+            # Add .local/bin to PATH
+            export PATH=$HOME/.local/bin/:$PATH
+        '';
+    };
 
     gtk = {
         enable = true;
@@ -41,12 +70,16 @@
      	    source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       	    recursive = true;
     	};
+        "polybar".source = "${self}/dots/polybar";
     	"rofi".source = "${self}/dots/rofi/config";
     };
     
     xdg.dataFile = {
         "rofi".source = "${self}/dots/rofi/share";
     };
+
+    home.file.".fehbg".source = "${self}/dots/feh/.fehbg";
+    home.file.".wallpaper".source = "${self}/dots/wallpaper";
 
     home.stateVersion = stateVersion;
 }

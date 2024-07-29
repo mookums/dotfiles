@@ -5,9 +5,11 @@
 
     services.openssh.enable = true;
     networking.networkmanager.enable = true;
+    programs.zsh.enable = true;
 
     users.users.muki = {
     	isNormalUser = true;
+        shell = pkgs.zsh;
         home = "/home/muki";
         extraGroups = [ "wheel" ];
     };

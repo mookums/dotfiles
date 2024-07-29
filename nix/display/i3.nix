@@ -6,9 +6,17 @@
     services.xserver.windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
+            dex
             rofi
             i3status
             i3lock
+            dunst
+            xfce.xfce4-power-manager
+            polybar
+            feh
+            arandr
+            xclip
+            light
         ];
     };
 
@@ -20,6 +28,7 @@
     };
 
     environment.systemPackages = with pkgs; [
+        playerctl
         pavucontrol 
     ];
 }

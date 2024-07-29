@@ -4,9 +4,6 @@ export GIT_EDITOR="nvim"
 export DOTFILES="$HOME/.dotfiles"
 KIBOIGO_ZSH="$HOME/.kiboigo/kiboigo.zsh"
 
-# For JDTLS LSP
-export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/eclipse/lombok.jar"
-
 # OCaml Eval if present
 if command -v opam &> /dev/null; then
     eval $(opam env)
@@ -21,12 +18,12 @@ fi
 export PATH=$DOTFILES/helpers/:$PATH
 
 # Add .local/bin to PATH
-export PATH=$HOME/.local/bin/:$PATH
+# export PATH=$HOME/.local/bin/:$PATH
 
 # Add FPGA OSS Suite to PATH
-export PATH=/opt/oss-cad-suite/bin/:$PATH
+# export PATH=/opt/oss-cad-suite/bin/:$PATH
 
 # Virtual Env for Python 3
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+# export WORKON_HOME=$HOME/.virtualenvs
+# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh

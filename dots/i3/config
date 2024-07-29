@@ -63,7 +63,7 @@ bindsym $mod+Shift+q kill
 
 # start a terminal w/ twm or tmux
 # pass t to start twm, anything else to start tmux.
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal -e $SHELL -c "~/.dotfiles/helpers/term-start.sh" 
+bindsym $mod+Return exec --no-startup-id alacritty -e $SHELL -c "~/.dotfiles/helpers/term-start.sh" 
 
 # start a web browser
 bindsym $mod+b exec --no-startup-id x-www-browser
