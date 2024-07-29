@@ -1,6 +1,3 @@
-# Import additional configuration files
-# import = ["~/.config/alacritty/kanagawa-dragon.toml"]
-
 [env]
 TERM = "xterm-256color"
 
