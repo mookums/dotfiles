@@ -49,9 +49,6 @@
             # Lua
             luarocks
             luajitPackages.jsregexp
-            lua-language-server
-            # Nix
-            nil
             # For TreeSitter?
             gcc
         ];

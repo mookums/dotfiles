@@ -31,6 +31,13 @@
         };
     in
     {
+        devShells.${system}.default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+                lua-language-server
+                nil
+            ];
+        };
+
         nixosConfigurations =
             {
                 albatross = utils.mkComputer {
