@@ -12,7 +12,7 @@ case $start in
         tmux
         ;;
     [aA])
-        tmux attach || tmux
+        twm -e
         ;;
     [$'\e'])
         exit 0

@@ -67,6 +67,10 @@
             custom = "${self}/dots/zsh/.oh-my-zsh/themes";
             plugins = [ "git" ];
         };
+        shellAliases = {
+            nxv = "nix develop -c nvim";
+            nxd = "nix develop";
+        };
         initExtra = ''
             # Add helpers to PATH
             export PATH=$DOTFILES/helpers/:$PATH
