@@ -14,14 +14,23 @@ cmp.setup({
 })
 
 local server_configurations = {
+    nil_ls = {
+        settings = {
+            ['nil'] = {
+                formatting = {
+                    command = { "nixfmt" }
+                }
+            }
+        }
+    },
     rust_analyzer = {
         settings = {
             ["rust-analyzer"] = {
                 check = {
                     command = "clippy",
-                },
-            },
-        },
+                }
+            }
+        }
     },
     lua_ls = {
         settings = {
@@ -31,7 +40,7 @@ local server_configurations = {
                     path = vim.split(package.path, ';'),
                 },
                 diagnostics = {
-                    globals = {'vim'},
+                    globals = { 'vim' },
                 },
                 workspace = {
                     library = {
@@ -42,8 +51,8 @@ local server_configurations = {
                 telemetry = {
                     enable = false,
                 },
-            },
-        },
+            }
+        }
     },
 }
 
@@ -51,13 +60,13 @@ local function setup_lsp_servers()
     -- Setup whichever we have in our path.
     -- This makes it easy to use nix shells and still have LSPs.
     local servers = {
-        'tsserver',         -- TS/JS
-        'clangd',           -- C/C++
-        'rust_analyzer',    -- Rust
-        'zls',              -- Zig
-        'jdtls',            -- Java
-        'lua_ls',           -- Lua
-        'nil_ls'            -- Nix
+        'tsserver',      -- TS/JS
+        'clangd',        -- C/C++
+        'rust_analyzer', -- Rust
+        'zls',           -- Zig
+        'jdtls',         -- Java
+        'lua_ls',        -- Lua
+        'nil_ls'         -- Nix
     }
 
     for _, server in ipairs(servers) do
