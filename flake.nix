@@ -1,7 +1,6 @@
 #   - albatross: main desktop
 #   - vega: satellite desktop
 #   - sirius: main laptop
-#   - jupiter: vm image
 
 {
     description = "Muki's NixOS :3";
@@ -50,10 +49,6 @@
 
                 vega = utils.mkComputer {
                     machineConfig = ./nix/machine/vega.nix;  
-                };
-
-                jupiter = utils.mkComputer {
-                    machineConfig = ./nix/machine/jupiter.nix;  
                 };
             };
     };

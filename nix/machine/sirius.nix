@@ -8,9 +8,10 @@
         ../display/i3.nix
     ];
 
-    services.avahi = {
+    # Wireless Peripherals
+    hardware.logitech.wireless = {
         enable = true;
-        nssmdns4 = true;
+        enableGraphical = true;
     };
 
     # https://nixos.wiki/wiki/Nvidia

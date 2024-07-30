@@ -8,6 +8,12 @@
     programs.gnupg.agent.enable = true;
 
     networking.networkmanager.enable = true;
+
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+    };
+
     programs.zsh.enable = true;
 
     users.users.muki = {

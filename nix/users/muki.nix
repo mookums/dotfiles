@@ -19,6 +19,7 @@
         hotspot
         freecad
         kicad
+        sshfs
         # Video
         obs-studio
         kdenlive
@@ -41,15 +42,11 @@
     programs.neovim = {
         enable = true;
         package = pkgs.neovim-unwrapped;
-        plugins = [
-            # Prefer just using Lazy but TreeSitter is an exception.
-            # pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-        ];
         extraPackages = with pkgs; [
             # Lua
             luarocks
             luajitPackages.jsregexp
-            # For TreeSitter?
+            # Treesitter
             gcc
         ];
     };
