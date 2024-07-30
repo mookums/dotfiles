@@ -48,6 +48,8 @@
             luajitPackages.jsregexp
             # Treesitter
             gcc
+            # Nil for all the flakes.
+            nil
         ];
     };
 
