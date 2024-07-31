@@ -2,29 +2,32 @@
 
 {
   home.packages = with pkgs; [
+    # Development
     alacritty
     git
     tmux
     fzf
     twm
-    firefox
     ripgrep
     fastfetch
-    vlc
+    sshfs
+    picocom
+    # Apps
+    firefox
     flameshot
     gimp
     discord
     spotify
     obsidian
     hotspot
+    vlc
+    # CAD
     freecad
     kicad
-    sshfs
-    picocom
     # Video
     obs-studio
     kdenlive
-    # For GTK themes
+    # GTK themes
     dconf
     papirus-icon-theme
     # Fonts
@@ -99,8 +102,10 @@
 
   xdg.dataFile = { "rofi".source = "${self}/dots/rofi/share"; };
 
-  home.file.".fehbg".source = "${self}/dots/feh/.fehbg";
-  home.file.".wallpaper".source = "${self}/dots/wallpaper";
+  home.file = {
+    ".fehbg".source = "${self}/dots/feh/.fehbg";
+    ".wallpaper".source = "${self}/dots/wallpaper";
+  };
 
   home.stateVersion = stateVersion;
 }
