@@ -20,6 +20,7 @@
     freecad
     kicad
     sshfs
+    picocom
     # Video
     obs-studio
     kdenlive

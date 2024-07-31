@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Run any .screenlayout first. This prevents weird wallpaper issues.
 #
