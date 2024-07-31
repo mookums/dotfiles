@@ -18,13 +18,17 @@
 
   programs.light.enable = true;
 
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   environment.systemPackages = with pkgs; [
     rofi
     playerctl
     pavucontrol
+    pcmanfm
+    lxmenu-data
     xfce.xfce4-power-manager
-    xfce.thunar
-    xfce.thunar-volman
     feh
     arandr
     xclip
