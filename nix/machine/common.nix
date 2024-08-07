@@ -9,6 +9,8 @@
 
   networking.networkmanager.enable = true;
 
+  services.printing.enable = true;
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;

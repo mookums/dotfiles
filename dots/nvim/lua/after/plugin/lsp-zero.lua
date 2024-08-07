@@ -60,13 +60,14 @@ local function setup_lsp_servers()
     -- Setup whichever we have in our path.
     -- This makes it easy to use nix shells and still have LSPs.
     local servers = {
-        'tsserver',      -- TS/JS
-        'clangd',        -- C/C++
-        'rust_analyzer', -- Rust
-        'zls',           -- Zig
-        'jdtls',         -- Java
-        'lua_ls',        -- Lua
-        'nil_ls'         -- Nix
+        'tsserver',         -- TS/JS
+        'clangd',           -- C/C++
+        'rust_analyzer',    -- Rust
+        'zls',              -- Zig
+        'jdtls',            -- Java
+        'lua_ls',           -- Lua
+        'nil_ls',           -- Nix
+        'csharp_ls'         -- C#
     }
 
     for _, server in ipairs(servers) do

@@ -12,6 +12,7 @@
     fastfetch
     sshfs
     picocom
+    bottom
     # Apps
     firefox
     flameshot
