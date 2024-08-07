@@ -8,6 +8,7 @@
   programs.gnupg.agent.enable = true;
 
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   services.printing.enable = true;
 
