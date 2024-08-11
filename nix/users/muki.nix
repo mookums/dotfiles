@@ -28,6 +28,7 @@
     # Video
     obs-studio
     kdenlive
+    tenacity
     # GTK themes
     dconf
     papirus-icon-theme
