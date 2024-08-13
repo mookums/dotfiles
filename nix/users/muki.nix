@@ -13,6 +13,10 @@
     sshfs
     picocom
     bottom
+    # Profiling
+    linuxPackages_latest.perf
+    hotspot
+    heaptrack
     # Apps
     firefox
     flameshot
@@ -20,7 +24,6 @@
     discord
     spotify
     obsidian
-    hotspot
     vlc
     # CAD
     freecad
