@@ -25,6 +25,7 @@
     spotify
     obsidian
     vlc
+    prismlauncher
     # CAD
     freecad
     kicad
