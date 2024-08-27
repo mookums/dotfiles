@@ -4,6 +4,12 @@
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+  };
+
   services.openssh.enable = true;
   programs.gnupg.agent.enable = true;
 
