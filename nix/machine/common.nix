@@ -23,6 +23,7 @@
     };
   };
 
+  virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
@@ -33,7 +34,7 @@
     shell = pkgs.zsh;
     home = "/home/muki";
     initialPassword = "muki";
-    extraGroups = [ "wheel" "networkmanager" "video" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "libvirtd" "docker" ];
   };
 
   environment.systemPackages = with pkgs; [ wget curl zip unzip openssl ];
