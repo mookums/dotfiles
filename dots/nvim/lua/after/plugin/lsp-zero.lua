@@ -67,7 +67,8 @@ local function setup_lsp_servers()
         'jdtls',            -- Java
         'lua_ls',           -- Lua
         'nil_ls',           -- Nix
-        'csharp_ls'         -- C#
+        'csharp_ls',        -- C#
+        'pylsp'             -- Python
     }
 
     for _, server in ipairs(servers) do
