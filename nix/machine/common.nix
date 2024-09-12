@@ -43,5 +43,5 @@
     extraGroups = [ "wheel" "networkmanager" "video" "libvirtd" "docker" ];
   };
 
-  environment.systemPackages = with pkgs; [ wget curl zip unzip openssl ];
+  environment.systemPackages = with pkgs; [ wget curl zip unzip ];
 }
