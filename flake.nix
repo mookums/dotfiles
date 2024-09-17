@@ -1,4 +1,4 @@
-# - albatross: main desktop
+#   - albatross: main desktop
 #   - vega: satellite desktop
 #   - sirius: main laptop
 
