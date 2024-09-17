@@ -60,7 +60,7 @@ local function setup_lsp_servers()
     -- Setup whichever we have in our path.
     -- This makes it easy to use nix shells and still have LSPs.
     local servers = {
-        'tsserver',         -- TS/JS
+        'ts_ls',            -- TS/JS
         'clangd',           -- C/C++
         'rust_analyzer',    -- Rust
         'zls',              -- Zig
