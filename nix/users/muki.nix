@@ -14,7 +14,7 @@
     picocom
     bottom
     # Profiling
-    linuxPackages_latest.perf
+    linuxKernel.packages.linux_6_6.perf
     hotspot
     heaptrack
     # Apps
