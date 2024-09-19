@@ -10,6 +10,8 @@
       options = "--delete-older-than 14d";
   };
 
+  nix.settings.trusted-users = [ "@wheel" ];
+
   services.openssh.enable = true;
   programs.gnupg.agent.enable = true;
 
