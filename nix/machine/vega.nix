@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ./common-desktop.nix
     ./hardware/vega.nix
     ../display/i3.nix
   ];

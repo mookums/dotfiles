@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ./common-desktop.nix
     ./hardware/sirius.nix
     # Sirius uses i3.
     ../display/i3.nix

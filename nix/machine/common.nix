@@ -18,8 +18,6 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
-  services.printing.enable = true;
-
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -30,10 +28,6 @@
       addresses = true;
     };
   };
-
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
 
   programs.zsh.enable = true;
 

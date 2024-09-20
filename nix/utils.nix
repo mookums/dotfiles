@@ -18,7 +18,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit self; };
           home-manager.users.muki = { config, ... }:
-            import ./users/muki.nix { inherit pkgs stateVersion self config; };
+            import ./users/muki-janus.nix { inherit pkgs stateVersion self config; };
         }
       ];
     };

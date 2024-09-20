@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # Development
-    alacritty
+    #alacritty
     git
     tmux
     fzf
@@ -12,38 +12,19 @@
     fastfetch
     sshfs
     picocom
-    bottom
-    # Profiling
-    linuxPackages.perf
-    hotspot
-    heaptrack
     # Apps
-    firefox
-    flameshot
-    gimp
-    discord
-    spotify
-    obsidian
-    vlc
-    # Games
-    prismlauncher
-    # CAD
-    freecad
-    kicad
-    # Video
-    obs-studio
-    kdenlive
-    tenacity
+    #firefox
+    #vlc
     # GTK themes
-    dconf
-    papirus-icon-theme
+    #dconf
+    #papirus-icon-theme
     # Fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    #TERMINAL = "alacritty";
     SHELL = "${pkgs.zsh}/bin/zsh";
     EDITOR = "nvim";
     GIT_EDITOR = "nvim";
@@ -86,32 +67,32 @@
     '';
   };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
+  #gtk = {
+  #  enable = true;
+  #  iconTheme = {
+  #    name = "Papirus";
+  #    package = pkgs.papirus-icon-theme;
+  #  };
+  #};
 
   xdg.configFile = {
-    "alacritty".source = "${self}/dots/alacritty";
-    "i3".source = "${self}/dots/i3";
+    #"alacritty".source = "${self}/dots/alacritty";
+    #"i3".source = "${self}/dots/i3";
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       recursive = true;
     };
-    "polybar".source = "${self}/dots/polybar";
-    "rofi".source = "${self}/dots/rofi/config";
+    #"polybar".source = "${self}/dots/polybar";
+    #"rofi".source = "${self}/dots/rofi/config";
     "tmux".source = "${self}/dots/tmux/";
   };
 
-  xdg.dataFile = { "rofi".source = "${self}/dots/rofi/share"; };
+  #xdg.dataFile = { "rofi".source = "${self}/dots/rofi/share"; };
 
-  home.file = {
-    ".fehbg".source = "${self}/dots/feh/.fehbg";
-    ".wallpaper".source = "${self}/dots/wallpaper";
-  };
+  #home.file = {
+  #  ".fehbg".source = "${self}/dots/feh/.fehbg";
+  #  ".wallpaper".source = "${self}/dots/wallpaper";
+  #};
 
   home.stateVersion = stateVersion;
 }

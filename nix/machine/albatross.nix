@@ -2,10 +2,14 @@
 
 {
   imports = [
-    ./common.nix
+    ./common-desktop.nix
     ./hardware/albatross.nix
     ../display/i3.nix
   ];
+
+  programs.steam = {
+    enable = true;
+  };
 
   # https://nixos.wiki/wiki/Nvidia
   hardware.opengl = { enable = true; };
