@@ -14,7 +14,7 @@
     picocom
     bottom
     # Profiling
-    linuxKernel.packages.linux_6_6.perf
+    linuxPackages.perf
     hotspot
     heaptrack
     # Apps
@@ -51,7 +51,7 @@
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
+    # package = pkgs.neovim;
     extraPackages = with pkgs; [
       # Lua
       luarocks
