@@ -1,11 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./common.nix
-    ./hardware/albatross.nix
-    ../display/i3.nix
-  ];
+  imports = [ ./common.nix ./hardware/albatross.nix ../display/i3.nix ];
+
+  programs.steam = { enable = true; };
 
   # https://nixos.wiki/wiki/Nvidia
   hardware.opengl = { enable = true; };
