@@ -13,6 +13,8 @@
     sshfs
     picocom
     bottom
+    gdb
+    valgrind
     # Profiling
     linuxPackages.perf
     hotspot
