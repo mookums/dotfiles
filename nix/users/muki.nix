@@ -24,6 +24,7 @@
     flameshot
     gimp
     discord
+    slack
     spotify
     obsidian
     vlc
