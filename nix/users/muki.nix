@@ -26,7 +26,6 @@
     discord
     slack
     spotify
-    obsidian
     vlc
     prismlauncher
     # CAD
