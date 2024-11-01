@@ -103,7 +103,6 @@
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       recursive = true;
     };
-    "polybar".source = "${self}/dots/polybar";
     "rofi".source = "${self}/dots/rofi/config";
     "tmux".source = "${self}/dots/tmux/";
   };

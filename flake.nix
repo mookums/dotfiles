@@ -38,6 +38,8 @@
         sirius = utils.mkComputer { machineConfig = ./nix/machine/sirius.nix; };
 
         vega = utils.mkComputer { machineConfig = ./nix/machine/vega.nix; };
+
+        owl = utils.mkComputer { machineConfig = ./nix/machine/owl.nix; };
       };
     };
 }

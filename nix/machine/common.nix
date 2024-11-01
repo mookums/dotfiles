@@ -1,21 +1,23 @@
 { pkgs, ... }:
 
 {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
   nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
   };
 
   nix.settings.trusted-users = [ "@wheel" ];
 
   services.openssh.enable = true;
   programs.gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-curses;
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   networking.networkmanager.enable = true;
