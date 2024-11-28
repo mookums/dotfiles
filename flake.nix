@@ -1,4 +1,4 @@
-#   - albatross: main desktop
+# - albatross: main desktop
 #   - vega: satellite desktop
 #   - sirius: main laptop
 
@@ -11,9 +11,11 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, ... }:
+  outputs = inputs@{ self, home-manager, nixpkgs, nix-alien, ... }:
     let
       system = "x86_64-linux";
       stateVersion = "24.05";
@@ -21,6 +23,9 @@
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
+        overlays = [
+            nix-alien.overlays.default
+        ];
       };
 
       utils = import ./nix/utils.nix {

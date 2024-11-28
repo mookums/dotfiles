@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   time.timeZone = "America/Los_Angeles";
@@ -38,6 +38,10 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  programs.nix-ld = {
+    enable = true;
+  };
+
   programs.zsh.enable = true;
 
   users.users.muki = {
@@ -48,5 +52,5 @@
     extraGroups = [ "wheel" "networkmanager" "video" "libvirtd" "docker" ];
   };
 
-  environment.systemPackages = with pkgs; [ wget curl zip unzip ];
+  environment.systemPackages = with pkgs; [ wget curl zip unzip nix-alien ];
 }
