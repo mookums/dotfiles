@@ -62,7 +62,7 @@
       gcc
       # Nil for all the flakes.
       nil
-      nixfmt-classic
+      alejandra
     ];
   };
 

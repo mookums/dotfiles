@@ -18,7 +18,7 @@ local server_configurations = {
         settings = {
             ['nil'] = {
                 formatting = {
-                    command = { "nixfmt" }
+                    command = { "alejandra" }
                 }
             }
         }

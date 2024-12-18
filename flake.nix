@@ -6,19 +6,19 @@
   description = "Muki's NixOS :3";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, nix-alien, ... }:
+  outputs = { self, home-manager, nixpkgs, nix-alien, ... }:
     let
       system = "x86_64-linux";
-      stateVersion = "24.05";
+      stateVersion = "24.11";
 
       pkgs = import nixpkgs {
         inherit system;
