@@ -6,7 +6,7 @@
   programs.steam = { enable = true; };
 
   # https://nixos.wiki/wiki/Nvidia
-  hardware.opengl = { enable = true; };
+  hardware.graphics = { enable = true; };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

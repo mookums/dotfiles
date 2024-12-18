@@ -10,13 +10,12 @@
     extraPackages = with pkgs; [ dex dunst i3status i3lock ];
   };
 
-  services.libinput.enable = true;
-
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
+  services.pipewire = {
+      enable = true;
+      pulse.enable = true;
   };
+
+  services.libinput.enable = true;
 
   programs.light.enable = true;
 
