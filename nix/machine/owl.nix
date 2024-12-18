@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./common.nix
     ./hardware/owl.nix
     ../display/i3.nix
   ];
 
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = ["intel"];
 
   # Fingerprint Support
   services.fprintd.enable = true;

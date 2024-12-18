@@ -1,14 +1,16 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./common.nix ./hardware/albatross.nix ../display/i3.nix ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./common.nix ./hardware/albatross.nix ../display/i3.nix];
 
-  programs.steam = { enable = true; };
+  programs.steam = {enable = true;};
 
   # https://nixos.wiki/wiki/Nvidia
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {enable = true;};
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     modesetting.enable = true;

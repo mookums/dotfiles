@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./common.nix
     ./hardware/vega.nix
@@ -8,9 +10,9 @@
   ];
 
   # https://nixos.wiki/wiki/Nvidia
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {enable = true;};
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     modesetting.enable = true;

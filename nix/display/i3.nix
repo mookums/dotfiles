@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -7,12 +7,12 @@
 
   services.xserver.windowManager.i3 = {
     enable = true;
-    extraPackages = with pkgs; [ dex dunst i3status i3lock ];
+    extraPackages = with pkgs; [dex dunst i3status i3lock];
   };
 
   services.pipewire = {
-      enable = true;
-      pulse.enable = true;
+    enable = true;
+    pulse.enable = true;
   };
 
   services.libinput.enable = true;

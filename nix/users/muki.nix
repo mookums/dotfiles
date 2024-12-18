@@ -1,6 +1,10 @@
-{ config, pkgs, stateVersion, self, ... }:
-
 {
+  config,
+  pkgs,
+  stateVersion,
+  self,
+  ...
+}: {
   home.packages = with pkgs; [
     # Development
     alacritty
@@ -39,7 +43,7 @@
     dconf
     papirus-icon-theme
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
   fonts.fontconfig.enable = true;
 
@@ -73,7 +77,7 @@
       enable = true;
       theme = "muki";
       custom = "${self}/dots/zsh/.oh-my-zsh/themes";
-      plugins = [ "git" ];
+      plugins = ["git"];
     };
     shellAliases = {
       nxv = "nix develop -c nvim";
@@ -106,7 +110,7 @@
     "tmux".source = "${self}/dots/tmux/";
   };
 
-  xdg.dataFile = { "rofi".source = "${self}/dots/rofi/share"; };
+  xdg.dataFile = {"rofi".source = "${self}/dots/rofi/share";};
 
   home.file = {
     ".fehbg".source = "${self}/dots/feh/.fehbg";
