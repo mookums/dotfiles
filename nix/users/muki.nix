@@ -7,7 +7,7 @@
 }: {
   home.packages = with pkgs; [
     # Development
-    alacritty
+    ghostty
     git
     tmux
     fzf
@@ -25,6 +25,7 @@
     heaptrack
     # Apps
     firefox
+    google-chrome
     flameshot
     gimp
     discord
@@ -48,7 +49,7 @@
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    TERMINAL = "ghostty";
     SHELL = "${pkgs.zsh}/bin/zsh";
     EDITOR = "nvim";
     GIT_EDITOR = "nvim";
@@ -100,7 +101,7 @@
   };
 
   xdg.configFile = {
-    "alacritty".source = "${self}/dots/alacritty";
+    "ghostty".source = "${self}/dots/ghostty";
     "i3".source = "${self}/dots/i3";
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";

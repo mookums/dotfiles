@@ -12,6 +12,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
+    ghostty.url = "github:ghostty-org/ghostty/v1.0.0";
   };
 
   outputs = {
@@ -19,6 +20,7 @@
     home-manager,
     nixpkgs,
     nix-alien,
+    ghostty,
     ...
   }: let
     system = "x86_64-linux";
@@ -29,6 +31,7 @@
       config = {allowUnfree = true;};
       overlays = [
         nix-alien.overlays.default
+        (final: prev: {ghostty = ghostty.packages.${system}.default;})
       ];
     };
 
