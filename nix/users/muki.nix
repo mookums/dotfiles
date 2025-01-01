@@ -49,6 +49,7 @@
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
+    TERM = "xterm-256color";
     TERMINAL = "ghostty";
     SHELL = "${pkgs.zsh}/bin/zsh";
     EDITOR = "nvim";
