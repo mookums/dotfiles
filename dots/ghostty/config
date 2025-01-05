@@ -1,9 +1,14 @@
+# Windowing
 confirm-close-surface = false
 resize-overlay = never
 window-decoration = false
 window-padding-x = 4
 window-padding-y = 2
 window-padding-balance = true
-theme = Afterglow 
 
+# Theming
+theme = Afterglow
 background = 181818 
+
+# Compat
+font-size = 13
