@@ -3,7 +3,8 @@
   pkgs,
   ...
 }: {
-  imports = [./common.nix ./hardware/albatross.nix ../display/i3.nix];
+  # imports = [./common.nix ./hardware/albatross.nix ../display/i3.nix];
+  imports = [./common.nix ./hardware/albatross.nix ../display/hyprland.nix];
 
   programs.steam = {enable = true;};
 

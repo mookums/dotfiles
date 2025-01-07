@@ -104,6 +104,8 @@
   xdg.configFile = {
     "ghostty".source = "${self}/dots/ghostty";
     "i3".source = "${self}/dots/i3";
+    "hypr".source = "${self}/dots/hypr";
+    "waybar".source = "${self}/dots/waybar";
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       recursive = true;
