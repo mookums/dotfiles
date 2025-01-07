@@ -1,12 +1,10 @@
 {
 	"layer": "top",	
 	"position": "bottom",
-    "height": 22,
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": [],
-    "modules-right": ["network", "battery", "clock", "tray"],
-
+    "modules-right": ["network", "memory", "load", "battery", "clock", "tray"],
 
 	"hyprland/workspaces": {
         "active-only": false,
@@ -17,35 +15,49 @@
     	"format": "{}",
     	"max-length": 150
     },
-    
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "W: {ipaddr}/{cidr} ({bandwidthTotalBits})",
+        "format-ethernet": "E: {ipaddr}/{cidr} ({bandwidthTotalBits})",
+        "format-disconnected": "down",
+        "interval": 60,
+        "max-length": 50
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "{used}/{total}",
+        "max-length": 10
+    },
+
+    "load": {
+        "interval": 30,
+        "format": "{}",
+        "max-length": 10
+    },
+
     "battery": {
         "states": {
               "warning": 30,
               "critical": 15
+        },
+        "interval": 60,
+        "format": "{capacity}%",
+        "max-length": 25
     },
 
     "clock": {
-        "format": "{:%a %b %e %R}",
+        "format": "{:%I:%M %p}",
         "interval": 30
     },
 
     "tray": {
         "icon-size": 18,
-        "spacing": 15
-    },
-
+        "spacing": 15,
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "interval": 30,
         "max-length": 25
-    },
-
-    "network": {
-        "format": "{ifname}",
-        "format-wifi": "W: {ipaddr}/{cidr} ({bandwidthTotalBits} bit/s)",
-        "format-ethernet": "E: {ipaddr}/{cidr} ({bandwidthTotalBits} bit/s)",
-        "format-disconnected": "down",
-        "interval": 60,
-        "max-length": 50
     }
 }

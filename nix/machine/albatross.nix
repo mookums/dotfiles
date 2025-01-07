@@ -10,7 +10,7 @@
 
   # https://nixos.wiki/wiki/Nvidia
   hardware.graphics = {enable = true;};
-
+  boot.kernelParams = ["nvidia-drm.modeset=1"];
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {

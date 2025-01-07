@@ -1,48 +1,49 @@
 * {
-    font-family: "UbuntuMono Nerd Font";
-    font-size: 16px;
+    font-family: "JetBrains Mono NerdFont";
+    font-size: 14px;
 }
 
 window#waybar { 
-    background-color: #225877; 
-    color: #ffffff;    
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .modules-left {
-	background-color: #323232;
-	padding: 0px 0px 0px 0px;
+	background-color: #000000;
 }
 
 .modules-right {
-	background-color: #323232;
-	padding: 0px 5px 0px 0px;
-}
-
-#workspaces {
+	background-color: #000000;
+	padding: 0em 0.25em;
 }
 
 #workspaces button {
-	padding: 0px 11px 0px 11px; 
+	padding: 0px 0.8em; 
  	min-width: 1px;
-	color: #888888;
-}
-
-#workspaces button.focused { 
-	padding: 0px 11px 0px 11px; 
-	background-color: #285577;
+    border-radius: 0px;
+    background-color: #000000;
 	color: #ffffff;
 }
 
+#workspaces button.active {
+    background-color: #285577;
+}
+
+#workspaces button.urgent {
+    background-color: #ffffff;
+    color: #900000;
+}
+
 #mode { 
-	 background-color: #900000;
+	 background-color: #000000;
 	 color: #ffffff;
      padding: 0px 5px 0px 5px;
      border: 1px solid #2f343a;
 }
 
 #window {
-	 color: #ffffff;
-	 background-color: #285577;
+	 color: #00ff00;
+	 background-color: #000000;
      padding: 0px 10px 0px 10px;
 }
 
@@ -52,26 +53,30 @@ window#waybar.empty #window {
 }
 
 window#waybar.empty {
-	background-color: #323232;
+	background-color: #000000;
 }
 
-#network, #pulseudio, #battery {
-    padding: 0px 15px 0px 15px;
-}
-
-#clock {
-	margin: 0px 15px 0px 15px;
+#network, #clock, #memory, #load, #battery {
+    padding: 0px 0.75em;
 }
 
 #tray{
-   padding: 0px 8px 0px 5px;
-   margin: 0px 5px 0px 5px;
+   padding: 0em 0.25em;
+   margin: 0em 0.25em;
 }
 
 #battery.critical {
-   color: #ff5555;
+   color: #ff0000;
+}
+
+#network.ethernet {
+    color: #00ff00;
+}
+
+#network.wifi {
+    color: #00ff00;
 }
 
 #network.disconnected {
-    color: #ff5555;
+    color: #ff0000;
 }
