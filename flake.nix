@@ -12,7 +12,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
-    ghostty.url = "github:ghostty-org/ghostty/v1.0.0";
+    ghostty.url = "github:ghostty-org/ghostty/v1.0.1";
   };
 
   outputs = {

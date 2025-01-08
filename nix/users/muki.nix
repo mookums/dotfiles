@@ -26,7 +26,6 @@
     # Apps
     firefox
     google-chrome
-    flameshot
     gimp
     discord
     slack
