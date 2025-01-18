@@ -16,13 +16,16 @@
     fastfetch
     sshfs
     picocom
-    bottom
-    gdb
-    valgrind
+    btop
     # Profiling
+    gdb
+    lldb
+    valgrind
     linuxPackages.perf
     hotspot
     heaptrack
+    hyperfine
+    poop
     # Apps
     firefox
     google-chrome

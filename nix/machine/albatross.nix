@@ -24,5 +24,16 @@
 
   boot.loader.systemd-boot.enable = true;
 
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+    port = 11434;
+  };
+
+  services.open-webui = {
+    enable = true;
+    environment.OLLAMA_API_BASE_URL = "http://localhost:11434";
+  };
+
   networking.hostName = "albatross";
 }
