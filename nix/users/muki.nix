@@ -26,6 +26,7 @@
     heaptrack
     hyperfine
     poop
+    wineWowPackages.stable
     # Apps
     firefox
     google-chrome
@@ -35,6 +36,7 @@
     spotify
     vlc
     prismlauncher
+    feh
     # CAD
     freecad
     kicad
