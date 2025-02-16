@@ -10,15 +10,12 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
   outputs = {
     self,
     home-manager,
     nixpkgs,
-    nix-alien,
     ...
   }: let
     system = "x86_64-linux";
@@ -27,7 +24,6 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {allowUnfree = true;};
-      overlays = [nix-alien.overlays.default];
     };
 
     utils = import ./nix/utils.nix {

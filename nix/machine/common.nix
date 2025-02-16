@@ -54,5 +54,5 @@
     extraGroups = ["wheel" "networkmanager" "video" "libvirtd" "docker"];
   };
 
-  environment.systemPackages = with pkgs; [wget curl zip unzip file nix-alien];
+  environment.systemPackages = with pkgs; [wget curl zip unzip file];
 }
