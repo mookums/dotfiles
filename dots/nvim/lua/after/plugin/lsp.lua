@@ -10,7 +10,9 @@ cmp.setup({
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    mapping = cmp.mapping.preset.insert({}),
+    mapping = cmp.mapping.preset.insert({
+        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
 })
 
 vim.opt.signcolumn = 'yes'

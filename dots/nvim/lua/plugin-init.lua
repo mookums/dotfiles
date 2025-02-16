@@ -1,4 +1,5 @@
 require('after/plugin/lsp')
+require('after/plugin/dapui')
 require('after/plugin/harpoon')
 require('after/plugin/telescope')
 require('after/plugin/treesitter')

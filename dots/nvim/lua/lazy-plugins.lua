@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Color Schemes
-    { 'rebelot/kanagawa.nvim' },
+    { "rebelot/kanagawa.nvim" },
     -- Plugins
     {
         "ThePrimeagen/harpoon",
@@ -23,9 +23,9 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" }
     },
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" }
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -37,15 +37,21 @@ require("lazy").setup({
         }
     },
     {
-        'nvim-lualine/lualine.nvim',
+        "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
     -- Language Support
-    { 'neovim/nvim-lspconfig' },
-    -- AutoComplete
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/nvim-cmp' },
-    -- Snippets
-    { 'L3MON4D3/LuaSnip' },
-    { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' },
+    { "neovim/nvim-lspconfig" },
+    -- -AutoComplete
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/nvim-cmp" },
+    -- -Snippets
+    { "L3MON4D3/LuaSnip" },
+    { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+    -- -DAP
+    {
+        "rcarriga/nvim-dap-ui",
+        tag = "v4.0.0",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    },
 })
