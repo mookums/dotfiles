@@ -24,16 +24,16 @@ require("lazy").setup({
     },
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-          "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
         }
     },
     {
@@ -41,18 +41,11 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
     -- Language Support
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            -- AutoComplete
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/nvim-cmp' },
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-        },
-    },
+    { 'neovim/nvim-lspconfig' },
+    -- AutoComplete
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    -- Snippets
+    { 'L3MON4D3/LuaSnip' },
     { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' },
 })

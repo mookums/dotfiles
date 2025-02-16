@@ -12,37 +12,48 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    home-manager,
-    nixpkgs,
-    ...
-  }: let
-    system = "x86_64-linux";
-    stateVersion = "24.11";
+  outputs =
+    {
+      self,
+      home-manager,
+      nixpkgs,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      stateVersion = "24.11";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {allowUnfree = true;};
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+
+      utils = import ./nix/utils.nix {
+        inherit
+          self
+          home-manager
+          nixpkgs
+          pkgs
+          system
+          stateVersion
+          ;
+      };
+    in
+    {
+      devShells.${system}.default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [ lua-language-server ];
+      };
+
+      nixosConfigurations = {
+        albatross = utils.mkComputer { machineConfig = ./nix/machine/albatross.nix; };
+
+        sirius = utils.mkComputer { machineConfig = ./nix/machine/sirius.nix; };
+
+        vega = utils.mkComputer { machineConfig = ./nix/machine/vega.nix; };
+
+        owl = utils.mkComputer { machineConfig = ./nix/machine/owl.nix; };
+      };
     };
-
-    utils = import ./nix/utils.nix {
-      inherit self home-manager nixpkgs pkgs system stateVersion;
-    };
-  in {
-    devShells.${system}.default = pkgs.mkShell {
-      nativeBuildInputs = with pkgs; [lua-language-server];
-    };
-
-    nixosConfigurations = {
-      albatross =
-        utils.mkComputer {machineConfig = ./nix/machine/albatross.nix;};
-
-      sirius = utils.mkComputer {machineConfig = ./nix/machine/sirius.nix;};
-
-      vega = utils.mkComputer {machineConfig = ./nix/machine/vega.nix;};
-
-      owl = utils.mkComputer {machineConfig = ./nix/machine/owl.nix;};
-    };
-  };
 }
