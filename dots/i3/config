@@ -63,7 +63,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Return exec --no-startup-id ghostty -e $SHELL -c "~/.dotfiles/helpers/term-start.sh" 
 
 # start a web browser
-bindsym $mod+b exec --no-startup-id firefox 
+bindsym $mod+b exec --no-startup-id zen 
 
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -columns 3 -lines 9

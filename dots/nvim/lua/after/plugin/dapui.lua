@@ -18,11 +18,12 @@ dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
 end
 
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
-vim.keymap.set('n', '<F10>', function() dap.step_over() end)
-vim.keymap.set('n', '<F11>', function() dap.step_into() end)
-vim.keymap.set('n', '<F12>', function() dap.step_out() end)
-vim.keymap.set('n', '<Leader>b', function() dap.toggle_breakpoint() end)
+vim.keymap.set('n', '<F5>', dap.continue)
+vim.keymap.set('n', '<F9>', dap.step_over)
+vim.keymap.set('n', '<F10>', dap.step_into)
+vim.keymap.set('n', '<F12>', dap.step_out)
+vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint)
+vim.keymap.set('n', '<Leader>cb', dap.clear_breakpoints)
 
 dap.adapters.gdb = {
     type = "executable",
@@ -30,9 +31,15 @@ dap.adapters.gdb = {
     args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
 }
 
+dap.adapters.lldb = {
+  type = 'executable',
+  command = 'lldb-dap',
+  name = 'lldb'
+}
+
 dap.configurations.zig = {
     {
-        name = "Launch Build then Run Binary",
+        name = "Launch Build then Run Binary (GDB)",
         type = "gdb",
         request = "launch",
         program = function()
@@ -45,7 +52,7 @@ dap.configurations.zig = {
         stopAtBeginningOfMainSubprogram = false,
     },
     {
-        name = "Launch Executable",
+        name = "Launch Executable (GDB)",
         type = "gdb",
         request = "launch",
         program = function()

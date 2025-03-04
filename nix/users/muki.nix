@@ -17,7 +17,7 @@
     sshfs
     picocom
     btop
-    # Profiling
+    # Debugging/Profiling 
     gdb
     lldb
     valgrind
@@ -26,9 +26,9 @@
     heaptrack
     hyperfine
     poop
-    wineWowPackages.stable
     # Apps
-    firefox
+    wineWowPackages.stable
+    zen-browser
     google-chrome
     gimp
     discord
