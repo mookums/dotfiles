@@ -4,10 +4,11 @@
   stateVersion,
   self,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     # Development
-    ghostty
+    alacritty
     git
     tmux
     fzf
@@ -17,7 +18,7 @@
     sshfs
     picocom
     btop
-    # Debugging/Profiling 
+    # Debugging/Profiling
     gdb
     lldb
     valgrind
@@ -31,8 +32,7 @@
     zen-browser
     google-chrome
     gimp
-    discord
-    slack
+    vesktop
     spotify
     vlc
     prismlauncher
@@ -48,13 +48,13 @@
     dconf
     papirus-icon-theme
     # Fonts
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     TERM = "xterm-256color";
-    TERMINAL = "ghostty";
+    TERMINAL = "alacritty";
     SHELL = "${pkgs.zsh}/bin/zsh";
     EDITOR = "nvim";
     GIT_EDITOR = "nvim";
@@ -83,7 +83,7 @@
       enable = true;
       theme = "muki";
       custom = "${self}/dots/zsh/.oh-my-zsh/themes";
-      plugins = ["git"];
+      plugins = [ "git" ];
     };
     shellAliases = {
       nxv = "nix develop -c nvim";
@@ -106,10 +106,8 @@
   };
 
   xdg.configFile = {
-    "ghostty".source = "${self}/dots/ghostty";
-    "i3".source = "${self}/dots/i3";
-    "hypr".source = "${self}/dots/hypr";
-    "waybar".source = "${self}/dots/waybar";
+    "alacritty".source = "${self}/dots/alacritty";
+    "sway".source = "${self}/dots/sway";
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       recursive = true;
@@ -118,10 +116,11 @@
     "tmux".source = "${self}/dots/tmux/";
   };
 
-  xdg.dataFile = {"rofi".source = "${self}/dots/rofi/share";};
+  xdg.dataFile = {
+    "rofi".source = "${self}/dots/rofi/share";
+  };
 
   home.file = {
-    ".fehbg".source = "${self}/dots/feh/.fehbg";
     ".wallpaper".source = "${self}/dots/wallpaper";
   };
 
