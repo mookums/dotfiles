@@ -31,6 +31,7 @@
     wineWowPackages.stable
     zen-browser
     google-chrome
+    thunderbird
     gimp
     vesktop
     spotify
