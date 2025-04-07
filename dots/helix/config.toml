@@ -1,3 +1,5 @@
+theme = "kanagawa-dragon"
+
 [editor]
 line-number = "relative"
 
@@ -5,3 +7,7 @@ line-number = "relative"
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[keys.normal]
+"S-up" = "page_up"
+"S-down" = "page_down"
