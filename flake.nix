@@ -32,9 +32,9 @@
           allowUnfree = true;
         };
         overlays = [
-            (final: prev: {
-                zen-browser = zen-browser.packages.${system}.default;
-            })
+          (final: prev: {
+            zen-browser = zen-browser.packages.${system}.default;
+          })
         ];
       };
 

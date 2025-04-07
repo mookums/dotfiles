@@ -1,0 +1,16 @@
+[[language]]
+name = "nix"
+language-servers = ["nil"]
+
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer.config]
+check = { command = "clippy" }
+
+[[language]]
+name = "typescript"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+]

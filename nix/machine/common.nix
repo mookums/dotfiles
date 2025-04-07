@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -12,7 +13,7 @@
     options = "--delete-older-than 14d";
   };
 
-  nix.settings.trusted-users = ["@wheel"];
+  nix.settings.trusted-users = [ "@wheel" ];
 
   services.openssh.enable = true;
   programs.gnupg.agent = {
@@ -36,7 +37,7 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
@@ -51,8 +52,20 @@
     shell = pkgs.zsh;
     home = "/home/muki";
     initialPassword = "muki";
-    extraGroups = ["wheel" "networkmanager" "video" "libvirtd" "docker"];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "libvirtd"
+      "docker"
+    ];
   };
 
-  environment.systemPackages = with pkgs; [wget curl zip unzip file];
+  environment.systemPackages = with pkgs; [
+    wget
+    curl
+    zip
+    unzip
+    file
+  ];
 }

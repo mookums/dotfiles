@@ -30,6 +30,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  services.tailscale.enable = true;
+
   boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "albatross";

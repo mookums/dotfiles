@@ -90,6 +90,7 @@ local function setup_lsp_servers()
     -- This makes it easy to use nix shells and still have LSPs.
     local servers = {
         'ts_ls',         -- TS/JS
+        'svelte',        -- Svelte
         'clangd',        -- C/C++
         'rust_analyzer', -- Rust
         'zls',           -- Zig

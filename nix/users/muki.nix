@@ -18,7 +18,7 @@
     sshfs
     picocom
     btop
-    # Debugging/Profiling
+    bruno
     gdb
     lldb
     valgrind
@@ -77,6 +77,14 @@
     ];
   };
 
+  programs.helix = {
+    enable = true;
+
+    extraPackages = with pkgs; [
+      nil
+    ];
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -88,6 +96,7 @@
     };
     shellAliases = {
       nxv = "nix develop -c nvim";
+      nxh = "nix develop -c hx";
       nxd = "nix develop";
     };
     initExtra = ''
@@ -113,6 +122,7 @@
       source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
       recursive = true;
     };
+    "helix".source = "${self}/dots/helix";
     "rofi".source = "${self}/dots/rofi/config";
     "tmux".source = "${self}/dots/tmux/";
   };
