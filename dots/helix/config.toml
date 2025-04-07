@@ -2,6 +2,7 @@ theme = "kanagawa-dragon"
 
 [editor]
 line-number = "relative"
+mouse = false
 
 [editor.cursor-shape]
 insert = "bar"
