@@ -16,3 +16,6 @@ language-servers = [
 ]
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 auto-format = true
+
+[[language]]
+name = "zig"

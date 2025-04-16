@@ -4,6 +4,9 @@ theme = "kanagawa-dragon"
 line-number = "relative"
 mouse = false
 
+[editor.file-picker]
+hidden = false
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
