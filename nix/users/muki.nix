@@ -28,7 +28,6 @@
     hyperfine
     poop
     # Apps
-    wineWowPackages.stable
     zen-browser
     google-chrome
     thunderbird

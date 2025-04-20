@@ -67,5 +67,6 @@
     zip
     unzip
     file
+    nix-output-monitor
   ];
 }
