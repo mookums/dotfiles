@@ -71,8 +71,8 @@ in
     TERM = "xterm-256color";
     TERMINAL = "alacritty";
     SHELL = "${pkgs.zsh}/bin/zsh";
-    EDITOR = "helix";
-    GIT_EDITOR = "helix";
+    EDITOR = "hx";
+    GIT_EDITOR = "hx";
     DOTFILES = "$HOME/.dotfiles";
   };
 

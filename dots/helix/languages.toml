@@ -1,26 +1,16 @@
 [[language]]
 name = "nix"
-language-servers = ["nil"]
 formatter = { command = "nixfmt" }
-
-[[language]]
-name = "rust"
+auto-format = true
 
 [language-server.rust-analyzer.config]
 check = { command = "clippy" }
 
 [[language]]
 name = "typescript"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-]
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "svelte"
 auto-format = true
-
-[[language]]
-name = "zig"
