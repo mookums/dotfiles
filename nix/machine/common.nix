@@ -2,13 +2,21 @@
   pkgs,
   ...
 }:
+let
+  authorizedKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHuLvCc5ZJ3JSbfwYlSJZRNDFKhoKPsdu/TDV1YYs8rL muki@muki.gg"
+  ];
+in
 {
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
-      trusted-users = ["@wheel"];
-      allowed-users = ["@wheel"];
+      trusted-users = [ "@wheel" ];
+      allowed-users = [ "@wheel" ];
     };
 
     gc = {
@@ -18,31 +26,47 @@
     };
   };
 
-  services.openssh.enable = true;
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
   };
-
   programs.zsh.enable = true;
 
-  users.users.muki = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    home = "/home/muki";
-    initialPassword = "muki";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "libvirtd"
-      "docker"
-    ];
+  users.users = {
+    root = {
+      openssh.authorizedKeys = {
+        keys = authorizedKeys;
+      };
+    };
+
+    muki = {
+      openssh.authorizedKeys = {
+        keys = authorizedKeys;
+      };
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      home = "/home/muki";
+      initialPassword = "muki";
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "video"
+        "libvirtd"
+        "docker"
+      ];
+    };
   };
 
   networking = {
     networkmanager.enable = true;
     firewall.enable = true;
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [

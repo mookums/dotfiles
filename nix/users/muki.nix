@@ -56,10 +56,7 @@ let
     tenacity
   ];
 
-  selectedPackages =
-    if minimal
-    then essentialPackages
-    else essentialPackages ++ additionalPackages;
+  selectedPackages = if minimal then essentialPackages else essentialPackages ++ additionalPackages;
 in
 {
   home.stateVersion = stateVersion;

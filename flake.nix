@@ -48,8 +48,9 @@
         };
 
         defaults = import ./nix/machine/common.nix;
-        
+
         albatross = import ./nix/machine/albatross.nix;
+        janus = import ./nix/machine/janus.nix;
         # vega = import ./nix/machine/vega.nix { inherit pkgs; };
       };
 
