@@ -9,8 +9,7 @@ let
 in
 {
   imports = [
-    ./hardware/albatross.nix
-    ../display/sway.nix
+    ./hardware/janus.nix
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
@@ -38,7 +37,7 @@ in
   networking.hostName = "janus";
 
   deployment = {
-    targetUser = "muki";
+    targetUser = "root";
     targetHost = "janus.local";
     tags = [ "home" ];
     allowLocalDeployment = true;

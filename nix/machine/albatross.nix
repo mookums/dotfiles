@@ -2,6 +2,7 @@
   self,
   config,
   pkgs,
+  agenix,
   home-manager,
   ...
 }:
@@ -12,6 +13,7 @@ in
   imports = [
     ./hardware/albatross.nix
     ../display/sway.nix
+    agenix.nixosModules.default
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
