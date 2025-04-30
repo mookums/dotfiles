@@ -13,12 +13,12 @@ in
   imports = [
     ./hardware/sisyphus.nix
     agenix.nixosModules.default
+    ./../module/mcwrap.nix
   ];
 
   deployment = {
     targetUser = "root";
     targetHost = "${hostName}.intra.muki.gg";
-    buildOnTarget = false;
     tags = [ "server" ];
   };
 
@@ -89,6 +89,13 @@ in
           base_domain = "intra.muki.gg";
         };
       };
+    };
+
+    mcWrap = {
+      enable = true;
+      scriptPath = "/home/minecraft/atm9/run.sh";
+      user = "minecraft";
+      group = "minecraft";
     };
   };
 }
