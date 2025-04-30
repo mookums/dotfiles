@@ -7,6 +7,7 @@
   ...
 }:
 let
+  hostName = "albatross";
   stateVersion = "24.11";
 in
 {
@@ -34,11 +35,18 @@ in
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   boot.loader.systemd-boot.enable = true;
-  networking.hostName = "albatross";
+
+  networking = {
+    hostName = hostName;
+    firewall = {
+      trustedInterfaces = [ "tailscale0" ];
+    };
+  };
 
   deployment = {
-    targetHost = null;
-    tags = [ "home" ];
+    targetUser = "root";
+    targetHost = "${hostName}.local";
+    tags = [ "desktop" ];
     allowLocalDeployment = true;
   };
 
@@ -79,7 +87,4 @@ in
   };
 
   services.tailscale.enable = true;
-  networking.firewall = {
-    trustedInterfaces = [ "tailscale0" ];
-  };
 }

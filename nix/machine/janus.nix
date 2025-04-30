@@ -5,6 +5,7 @@
   ...
 }:
 let
+  hostName = "janus";
   stateVersion = "24.11";
 in
 {
@@ -34,12 +35,18 @@ in
     enable = true;
     device = "/dev/sda";
   };
-  networking.hostName = "janus";
+
+  networking = {
+    hostName = hostName;
+    firewall = {
+      trustedInterfaces = [ "tailscale0" ];
+    };
+  };
 
   deployment = {
     targetUser = "root";
-    targetHost = "janus.local";
-    tags = [ "home" ];
+    targetHost = "${hostName}.local";
+    tags = [ "laptop" ];
     allowLocalDeployment = true;
   };
 

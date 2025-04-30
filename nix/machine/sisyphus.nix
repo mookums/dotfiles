@@ -19,7 +19,7 @@ in
     targetUser = "root";
     targetHost = "${hostName}.home";
     buildOnTarget = false;
-    tags = [ "home" ];
+    tags = [ "server" ];
   };
 
   age.secrets = {
