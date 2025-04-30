@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 {
@@ -9,6 +8,17 @@
     ./hardware/vega.nix
     ../display/i3.nix
   ];
+
+  system.stateVersion = "24.11";
+  time.timeZone = "America/Los_Angeles";
+  boot.loader.systemd-boot.enable = true;
+  networking.hostName = "vega";
+
+  deployment = {
+    targetHost = null;
+    tags = [ "thome" ];
+    allowLocalDeployment = true;
+  };
 
   # https://nixos.wiki/wiki/Nvidia
   hardware.graphics = {
@@ -25,8 +35,4 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  boot.loader.systemd-boot.enable = true;
-
-  networking.hostName = "vega";
 }

@@ -1,12 +1,11 @@
 {
-  config,
   pkgs,
   stateVersion,
-  self,
+  minimal ? false,
   ...
 }:
-{
-  home.packages = with pkgs; [
+let
+  essentialPackages = with pkgs; [
     # Development
     alacritty
     git
@@ -18,17 +17,28 @@
     sshfs
     picocom
     btop
-    bruno
     gdb
     lldb
     valgrind
     linuxPackages.perf
+    # Apps
+    zen-browser
+    feh
+    # GTK themes
+    dconf
+    papirus-icon-theme
+    # Fonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
+  additionalPackages = with pkgs; [
+    # Development
+    bruno
     hotspot
     heaptrack
     hyperfine
     poop
     # Apps
-    zen-browser
     google-chrome
     thunderbird
     gimp
@@ -36,7 +46,6 @@
     spotify
     vlc
     prismlauncher
-    feh
     # CAD
     freecad
     kicad
@@ -44,36 +53,26 @@
     obs-studio
     kdenlive
     tenacity
-    # GTK themes
-    dconf
-    papirus-icon-theme
-    # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  selectedPackages =
+    if minimal
+    then essentialPackages
+    else essentialPackages ++ additionalPackages;
+in
+{
+  home.stateVersion = stateVersion;
+
+  home.packages = selectedPackages;
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     TERM = "xterm-256color";
     TERMINAL = "alacritty";
     SHELL = "${pkgs.zsh}/bin/zsh";
-    EDITOR = "nvim";
-    GIT_EDITOR = "nvim";
+    EDITOR = "helix";
+    GIT_EDITOR = "helix";
     DOTFILES = "$HOME/.dotfiles";
-  };
-
-  programs.neovim = {
-    enable = true;
-    # package = pkgs.neovim;
-    extraPackages = with pkgs; [
-      # Lua
-      luarocks
-      luajitPackages.jsregexp
-      # Treesitter
-      gcc
-      # Nil for all the flakes.
-      nil
-      nixfmt-rfc-style
-    ];
   };
 
   programs.helix = {
@@ -81,6 +80,7 @@
 
     extraPackages = with pkgs; [
       nil
+      nixfmt-rfc-style
     ];
   };
 
@@ -90,11 +90,10 @@
     oh-my-zsh = {
       enable = true;
       theme = "muki";
-      custom = "${self}/dots/zsh/.oh-my-zsh/themes";
+      custom = "./../../dots/zsh/.oh-my-zsh/themes";
       plugins = [ "git" ];
     };
     shellAliases = {
-      nxv = "nix develop -c nvim";
       nxh = "nix develop -c hx";
       nxd = "nix develop";
     };
@@ -115,24 +114,18 @@
   };
 
   xdg.configFile = {
-    "alacritty".source = "${self}/dots/alacritty";
-    "sway".source = "${self}/dots/sway";
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${self}/dots/nvim";
-      recursive = true;
-    };
-    "helix".source = "${self}/dots/helix";
-    "rofi".source = "${self}/dots/rofi/config";
-    "tmux".source = "${self}/dots/tmux/";
+    "alacritty".source = ./../../dots/alacritty;
+    "sway".source = ./../../dots/sway;
+    "helix".source = ./../../dots/helix;
+    "rofi".source = ./../../dots/rofi/config;
+    "tmux".source = ./../../dots/tmux;
   };
 
   xdg.dataFile = {
-    "rofi".source = "${self}/dots/rofi/share";
+    "rofi".source = ./../../dots/rofi/share;
   };
 
   home.file = {
-    ".wallpaper".source = "${self}/dots/wallpaper";
+    ".wallpaper".source = ./../../dots/wallpaper;
   };
-
-  home.stateVersion = stateVersion;
 }

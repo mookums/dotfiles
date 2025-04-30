@@ -1,6 +1,7 @@
 [[language]]
 name = "nix"
 language-servers = ["nil"]
+formatter = { command = "nixfmt" }
 
 [[language]]
 name = "rust"
@@ -15,6 +16,10 @@ language-servers = [
   "eslint",
 ]
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "svelte"
 auto-format = true
 
 [[language]]
