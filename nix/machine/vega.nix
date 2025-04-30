@@ -2,21 +2,24 @@
   config,
   ...
 }:
+let
+  hostName = "vega";
+in
 {
   imports = [
     ./common.nix
     ./hardware/vega.nix
-    ../display/i3.nix
+    ../display/sway.nix
   ];
 
   system.stateVersion = "24.11";
   time.timeZone = "America/Los_Angeles";
   boot.loader.systemd-boot.enable = true;
-  networking.hostName = "vega";
+  networking.hostName = hostName;
 
   deployment = {
-    targetHost = null;
-    tags = [ "thome" ];
+    targetHost = "${hostName}.intra.muki.gg";
+    tags = [ "desktop" ];
     allowLocalDeployment = true;
   };
 
@@ -25,8 +28,6 @@
     enable = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -34,5 +35,6 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    enable = true;
   };
 }

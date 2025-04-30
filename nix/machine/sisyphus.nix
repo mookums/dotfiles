@@ -17,7 +17,7 @@ in
 
   deployment = {
     targetUser = "root";
-    targetHost = "${hostName}.home";
+    targetHost = "${hostName}.intra.muki.gg";
     buildOnTarget = false;
     tags = [ "server" ];
   };
