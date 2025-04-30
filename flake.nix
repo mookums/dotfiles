@@ -14,6 +14,7 @@
 
   outputs =
     {
+      self,
       home-manager,
       nixpkgs,
       zen-browser,
@@ -43,7 +44,7 @@
       colmena = {
         meta = {
           nixpkgs = pkgs;
-          specialArgs = { inherit home-manager; };
+          specialArgs = { inherit self home-manager; };
         };
 
         defaults = import ./nix/machine/common.nix;

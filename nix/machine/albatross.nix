@@ -1,4 +1,5 @@
 {
+  self,
   config,
   pkgs,
   home-manager,
@@ -19,6 +20,7 @@ in
         { ... }:
         import ../users/muki.nix {
           inherit
+            self
             pkgs
             stateVersion
             ;

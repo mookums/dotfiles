@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   stateVersion,
   minimal ? false,
@@ -90,7 +91,7 @@ in
     oh-my-zsh = {
       enable = true;
       theme = "muki";
-      custom = "./../../dots/zsh/.oh-my-zsh/themes";
+      custom = "${self}/dots/zsh/.oh-my-zsh/themes";
       plugins = [ "git" ];
     };
     shellAliases = {
