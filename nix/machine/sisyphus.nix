@@ -6,6 +6,8 @@
 let
   hostName = "sisyphus";
   stateVersion = "24.11";
+
+  headscalePort = 9892;
 in
 {
   imports = [
@@ -37,6 +39,7 @@ in
     firewall.allowedTCPPorts = [
       80
       443
+      headscalePort
     ];
   };
 
@@ -46,7 +49,10 @@ in
       server = "api.cloudflare.com/client/v4";
       passwordFile = config.age.secrets.cloudflare-api.path;
       protocol = "cloudflare";
-      domains = [ "muki.gg" ];
+      domains = [
+        "muki.gg"
+        "tail.muki.gg"
+      ];
       usev4 = "webv4";
       usev6 = "no";
       extraConfig = ''
@@ -63,6 +69,23 @@ in
         "muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:9862
         '';
+        "tail.muki.gg".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString headscalePort}
+        '';
+      };
+    };
+
+    headscale = {
+      enable = true;
+      address = "127.0.0.1";
+      port = headscalePort;
+      settings = {
+        server_url = "https://tail.muki.gg";
+
+        dns = {
+          magic_dns = true;
+          base_domain = "intra.muki.gg";
+        };
       };
     };
   };

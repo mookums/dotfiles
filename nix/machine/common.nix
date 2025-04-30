@@ -5,6 +5,7 @@
 let
   authorizedKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHuLvCc5ZJ3JSbfwYlSJZRNDFKhoKPsdu/TDV1YYs8rL muki@muki.gg"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJt49sSWYCcxVio2h9aWroPw5qiGnD/9T/zyqoCXgJZr muki@pariah"
   ];
 in
 {
@@ -68,6 +69,8 @@ in
       PasswordAuthentication = false;
     };
   };
+
+  services.fail2ban.enable = true;
 
   environment.systemPackages = with pkgs; [
     helix

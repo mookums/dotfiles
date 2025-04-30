@@ -66,6 +66,7 @@
         albatross = import ./nix/machine/albatross.nix;
         janus = import ./nix/machine/janus.nix;
         sisyphus = import ./nix/machine/sisyphus.nix;
+        pariah = import ./nix/machine/pariah.nix;
         # vega = import ./nix/machine/vega.nix { inherit pkgs; };
       };
 
