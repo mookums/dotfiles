@@ -35,12 +35,12 @@ in
 
   networking = {
     hostName = hostName;
-    # domain = "sisyphus.home";
-    firewall.allowedTCPPorts = [
-      80
-      443
-      headscalePort
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        80
+        443
+      ];
+    };
   };
 
   services = {
@@ -50,7 +50,7 @@ in
       passwordFile = config.age.secrets.cloudflare-api.path;
       protocol = "cloudflare";
       domains = [
-        "muki.gg"
+        # "muki.gg"
         "tail.muki.gg"
       ];
       usev4 = "webv4";
@@ -66,9 +66,9 @@ in
       enable = true;
       email = "muki@muki.gg";
       virtualHosts = {
-        "muki.gg".extraConfig = ''
-          reverse_proxy 127.0.0.1:9862
-        '';
+        # "muki.gg".extraConfig = ''
+        #   reverse_proxy 127.0.0.1:9862
+        # '';
         "tail.muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
@@ -81,6 +81,8 @@ in
       port = headscalePort;
       settings = {
         server_url = "https://tail.muki.gg";
+        tls_key_path = null;
+        tls_cert_path = null;
 
         dns = {
           magic_dns = true;

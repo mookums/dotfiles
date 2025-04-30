@@ -59,7 +59,10 @@ in
 
   networking = {
     networkmanager.enable = true;
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = [ "tailscale0" ];
+    };
   };
 
   services.openssh = {
@@ -69,6 +72,7 @@ in
     };
   };
 
+  services.tailscale.enable = true;
   services.fail2ban.enable = true;
 
   environment.systemPackages = with pkgs; [

@@ -35,13 +35,7 @@ in
     enable = true;
     device = "/dev/sda";
   };
-
-  networking = {
-    hostName = hostName;
-    firewall = {
-      trustedInterfaces = [ "tailscale0" ];
-    };
-  };
+  networking.hostName = hostName;
 
   deployment = {
     targetUser = "root";

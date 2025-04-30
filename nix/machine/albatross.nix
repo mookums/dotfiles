@@ -35,13 +35,7 @@ in
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   boot.loader.systemd-boot.enable = true;
-
-  networking = {
-    hostName = hostName;
-    firewall = {
-      trustedInterfaces = [ "tailscale0" ];
-    };
-  };
+  networking.hostName = hostName;
 
   deployment = {
     targetUser = "root";
@@ -85,6 +79,4 @@ in
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  services.tailscale.enable = true;
 }

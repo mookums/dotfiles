@@ -34,12 +34,7 @@ in
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   boot.loader.systemd-boot.enable = true;
-  networking = {
-    hostName = hostName;
-    firewall = {
-      trustedInterfaces = [ "tailscale0" ];
-    };
-  };
+  networking.hostName = hostName;
 
   deployment = {
     targetUser = "root";
@@ -68,6 +63,4 @@ in
 
   programs.nix-ld.enable = true;
   programs.virt-manager.enable = true;
-
-  services.tailscale.enable = true;
 }
