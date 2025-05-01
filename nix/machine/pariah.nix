@@ -44,6 +44,8 @@ in
   };
 
   services.printing.enable = true;
+  services.fprintd.enable = true;
+  security.pam.services.login.fprintAuth = true;
 
   services.avahi = {
     enable = true;
