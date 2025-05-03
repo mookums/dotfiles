@@ -74,6 +74,7 @@ in
 
   services.tailscale.enable = true;
   services.fail2ban.enable = true;
+  services.logrotate.enable = true;
 
   environment.systemPackages = with pkgs; [
     helix
