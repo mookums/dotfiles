@@ -47,6 +47,7 @@ let
     spotify
     vlc
     prismlauncher
+    slack
     # CAD
     freecad
     kicad
