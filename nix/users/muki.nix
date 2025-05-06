@@ -26,6 +26,7 @@ let
     # Apps
     zen-browser
     feh
+    nb
     # GTK themes
     dconf
     papirus-icon-theme
