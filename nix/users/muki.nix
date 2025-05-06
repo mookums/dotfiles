@@ -26,7 +26,6 @@ let
     # Apps
     zen-browser
     feh
-    nb
     # GTK themes
     dconf
     papirus-icon-theme
@@ -74,6 +73,10 @@ in
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = "$HOME/.dotfiles";
+  };
+
+  programs.zk = {
+    enable = true;
   };
 
   programs.helix = {
