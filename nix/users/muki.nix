@@ -18,6 +18,7 @@ let
     sshfs
     picocom
     btop
+    yazi
     gdb
     lldb
     valgrind
@@ -94,6 +95,7 @@ in
     };
     shellAliases = {
       nxh = "nix develop -c hx";
+      nxy = "nix develop -c yazi";
       nxd = "nix develop";
     };
     initExtra = ''
