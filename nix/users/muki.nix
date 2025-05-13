@@ -68,8 +68,6 @@ in
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    TERM = "xterm-256color";
-    TERMINAL = "alacritty";
     SHELL = "${pkgs.zsh}/bin/zsh";
     EDITOR = "hx";
     GIT_EDITOR = "hx";
