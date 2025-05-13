@@ -14,3 +14,8 @@ auto-format = true
 [[language]]
 name = "svelte"
 auto-format = true
+
+[[language]]
+name = "python"
+language-servers = ["ruff", "basedpyright", "pyright", "pylsp"]
+auto-format = true
