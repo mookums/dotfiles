@@ -45,7 +45,10 @@ let
     google-chrome
     thunderbird
     gimp
-    vesktop
+    (discord.override {
+      withOpenASAR = true; # can do this here too
+      withVencord = true;
+    })
     spotify
     vlc
     prismlauncher
