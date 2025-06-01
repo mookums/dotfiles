@@ -31,7 +31,7 @@ let
     dconf
     papirus-icon-theme
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
   ];
 
   additionalPackages = with pkgs; [
@@ -46,7 +46,7 @@ let
     thunderbird
     gimp
     (discord.override {
-      withOpenASAR = true; # can do this here too
+      withOpenASAR = true;
       withVencord = true;
     })
     spotify
@@ -58,7 +58,7 @@ let
     kicad
     # Video
     obs-studio
-    kdenlive
+    kdePackages.kdenlive
     tenacity
   ];
 
