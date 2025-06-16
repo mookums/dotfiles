@@ -27,7 +27,7 @@ bindsym $mod+b exec --no-startup-id zen-beta
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -columns 3 -lines 9
 
 # no border on tiling
-for_window [tiling] border pixel 1
+for_window [tiling] border pixel 2
 for_window [floating] border pixel 5
 
 # gaps

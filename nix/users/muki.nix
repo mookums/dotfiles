@@ -100,7 +100,7 @@ in
       nxy = "nix develop -c yazi";
       nxd = "nix develop";
     };
-    initExtra = ''
+    initContent = ''
       # Add helpers to PATH
       export PATH=$DOTFILES/helpers/:$PATH
       # Add .local/bin to PATH

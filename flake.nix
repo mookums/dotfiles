@@ -1,5 +1,3 @@
-# - albatross: main desktop
-
 {
   description = "Muki's NixOS :3";
 
@@ -14,6 +12,9 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    helix.url = "github:helix-editor/helix";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -23,6 +24,7 @@
       agenix,
       home-manager,
       zen-browser,
+      helix,
       ...
     }:
     let
@@ -36,6 +38,7 @@
         overlays = [
           (final: prev: {
             zen-browser = zen-browser.packages.${system}.default;
+            helix = helix.packages.${system}.default;
           })
         ];
       };
