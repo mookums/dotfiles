@@ -17,5 +17,5 @@ auto-format = true
 
 [[language]]
 name = "python"
-language-servers = ["ruff", "basedpyright", "pyright", "pylsp"]
+language-servers = ["ty", "ruff", "basedpyright"]
 auto-format = true
