@@ -50,7 +50,6 @@ in
       passwordFile = config.age.secrets.cloudflare-api.path;
       protocol = "cloudflare";
       domains = [
-        # "muki.gg"
         "tail.muki.gg"
       ];
       usev4 = "webv4";
@@ -66,9 +65,6 @@ in
       enable = true;
       email = "muki@muki.gg";
       virtualHosts = {
-        # "muki.gg".extraConfig = ''
-        #   reverse_proxy 127.0.0.1:9862
-        # '';
         "tail.muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
