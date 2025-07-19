@@ -23,7 +23,7 @@ floating_modifier $mod
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec --no-startup-id alacritty -e $SHELL -c "~/.dotfiles/helpers/term-start.sh" 
-bindsym $mod+b exec --no-startup-id zen-beta
+bindsym $mod+b exec --no-startup-id zen
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -columns 3 -lines 9
 
 # no border on tiling

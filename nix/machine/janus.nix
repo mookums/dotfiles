@@ -2,6 +2,7 @@
   self,
   pkgs,
   home-manager,
+  zen-browser,
   ...
 }:
 let
@@ -22,6 +23,7 @@ in
             self
             pkgs
             stateVersion
+            zen-browser
             ;
           minimal = true;
         };

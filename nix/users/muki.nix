@@ -2,6 +2,7 @@
   self,
   pkgs,
   stateVersion,
+  zen-browser,
   minimal ? false,
   ...
 }:
@@ -24,7 +25,6 @@ let
     valgrind
     linuxPackages.perf
     # Apps
-    zen-browser
     feh
     zathura
     # GTK themes
@@ -65,6 +65,10 @@ let
   selectedPackages = if minimal then essentialPackages else essentialPackages ++ additionalPackages;
 in
 {
+  imports = [
+    zen-browser.homeModules.beta
+  ];
+
   home.stateVersion = stateVersion;
 
   home.packages = selectedPackages;
@@ -75,6 +79,25 @@ in
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = "$HOME/.dotfiles";
+    BROWSER = "zen";
+  };
+
+  programs.zen-browser = {
+    enable = true;
+
+    policies = {
+      DisableAppUpdate = true;
+      DisableTelemetry = true;
+      DisablePocket = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+    };
   };
 
   programs.helix = {
@@ -114,6 +137,48 @@ in
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
     };
+  };
+
+  xdg.desktopEntries = {
+    zathura = {
+      name = "Zathura";
+      exec = "zathura %f";
+      mimeType = [ "application/pdf" ];
+    };
+    feh = {
+      name = "Feh";
+      exec = "feh %f";
+      mimeType = [
+        "image/jpeg"
+        "image/png"
+        "image/gif"
+      ];
+    };
+    zen = {
+      name = "Zen";
+      exec = "zen %U";
+      icon = "zen-browser";
+      mimeType = [
+        "text/html"
+        "text/xml"
+        "application/xhtml+xml"
+        "application/xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
+    };
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "application/pdf" = "zathura.desktop";
+    "image/jpeg" = "feh.desktop";
+    "image/png" = "feh.desktop";
+    "text/html" = "zen.desktop";
+    "text/xml" = "zen.desktop";
+    "application/xhtml+xml" = "zen.desktop";
+    "application/xml" = "zen.desktop";
+    "x-scheme-handler/http" = "zen.desktop";
+    "x-scheme-handler/https" = "zen.desktop";
   };
 
   xdg.configFile = {

@@ -3,6 +3,7 @@
   pkgs,
   agenix,
   home-manager,
+  zen-browser,
   ...
 }:
 let
@@ -25,6 +26,7 @@ in
             self
             pkgs
             stateVersion
+            zen-browser
             ;
         };
     }
