@@ -134,6 +134,9 @@ in
 
       $env.path ++= ["$DOTFILES/helpers"]
 
+      $env.EDITOR = 'hx'
+      $env.GIT_EDITOR = 'hx';
+      $env.DOTFILES = $env.HOME + '/.dotfiles';
       # Fix ncurses GPG
       $env.GPG_TTY = (tty)
     '';
