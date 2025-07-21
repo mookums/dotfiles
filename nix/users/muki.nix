@@ -75,7 +75,7 @@ in
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    SHELL = "${pkgs.zsh}/bin/zsh";
+    # SHELL = "${pkgs.nushell}/bin/nu";
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = "$HOME/.dotfiles";
@@ -109,26 +109,55 @@ in
     ];
   };
 
-  programs.zsh = {
+  programs.nushell = {
     enable = true;
-    autosuggestion.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "muki";
-      custom = "${self}/dots/zsh/.oh-my-zsh/themes";
-      plugins = [ "git" ];
-    };
+    extraConfig = ''
+      let carapace_completer = {|spans|
+       carapace $spans.0 nushell ...$spans | from json
+       }
+
+      $env.config = {
+        buffer_editor: 'hx',
+        edit_mode: 'vi',
+        show_banner: false,
+        completions: {
+          case_sensitive: false,
+          quick: true,
+          partial: true,
+          algorithm: 'fuzzy',
+          external: {
+            enable: true,
+            completer: $carapace_completer
+          }
+        }
+      }
+
+      $env.path ++= ["$DOTFILES/helpers"]
+
+      # Fix ncurses GPG
+      $env.GPG_TTY = (tty)
+    '';
     shellAliases = {
       nxh = "nix develop -c hx";
       nxy = "nix develop -c yazi";
-      nxd = "nix develop";
+      nxd = "nix develop -c nu";
     };
-    initContent = ''
-      # Add helpers to PATH
-      export PATH=$DOTFILES/helpers/:$PATH
-      # Add .local/bin to PATH
-      export PATH=$HOME/.local/bin/:$PATH
-    '';
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = true;
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+    };
   };
 
   gtk = {

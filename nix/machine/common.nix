@@ -30,7 +30,6 @@ in
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
   };
-  programs.zsh.enable = true;
 
   users.users = {
     root = {
@@ -44,7 +43,7 @@ in
         keys = authorizedKeys;
       };
       isNormalUser = true;
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
       home = "/home/muki";
       initialPassword = "muki";
       extraGroups = [
