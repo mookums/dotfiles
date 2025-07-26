@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   stateVersion,
   zen-browser,
@@ -82,83 +81,102 @@ in
     BROWSER = "zen";
   };
 
-  programs.zen-browser = {
-    enable = true;
+  programs = {
+    zen-browser = {
+      enable = true;
 
-    policies = {
-      DisableAppUpdate = true;
-      DisableTelemetry = true;
-      DisablePocket = true;
-      DontCheckDefaultBrowser = true;
-      NoDefaultBookmarks = true;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
+      policies = {
+        DisableAppUpdate = true;
+        DisableTelemetry = true;
+        DisablePocket = true;
+        DontCheckDefaultBrowser = true;
+        NoDefaultBookmarks = true;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
       };
     };
-  };
 
-  programs.helix = {
-    enable = true;
+    neovim = {
+      enable = true;
+      # package = pkgs.neovim;
+      extraPackages = with pkgs; [
+        # Lua
+        luarocks
+        luajitPackages.jsregexp
+        # Treesitter
+        gcc
+        # Nil for all the flakes.
+        nil
+        nixfmt-rfc-style
+      ];
+    };
 
-    extraPackages = with pkgs; [
-      nil
-      nixfmt-rfc-style
-    ];
-  };
+    helix = {
+      enable = true;
 
-  programs.nushell = {
-    enable = true;
-    extraConfig = ''
-      let carapace_completer = {|spans|
-       carapace $spans.0 nushell ...$spans | from json
-       }
+      extraPackages = with pkgs; [
+        nil
+        nixfmt-rfc-style
+      ];
+    };
 
-      $env.config = {
-        buffer_editor: 'hx',
-        edit_mode: 'vi',
-        show_banner: false,
-        completions: {
-          case_sensitive: false,
-          quick: true,
-          partial: true,
-          algorithm: 'fuzzy',
-          external: {
-            enable: true,
-            completer: $carapace_completer
+    nushell = {
+      enable = true;
+      extraConfig = ''
+        let carapace_completer = {|spans|
+         carapace $spans.0 nushell ...$spans | from json
+         }
+
+        $env.config = {
+          buffer_editor: 'hx',
+          edit_mode: 'vi',
+          show_banner: false,
+          completions: {
+            case_sensitive: false,
+            quick: true,
+            partial: true,
+            algorithm: 'fuzzy',
+            external: {
+              enable: true,
+              completer: $carapace_completer
+            }
           }
         }
-      }
 
-      $env.path ++= ["$DOTFILES/helpers"]
+        $env.path ++= ["$DOTFILES/helpers"]
 
-      $env.EDITOR = 'hx'
-      $env.GIT_EDITOR = 'hx';
-      $env.DOTFILES = $env.HOME + '/.dotfiles';
-      # Fix ncurses GPG
-      $env.GPG_TTY = (tty)
-    '';
-    shellAliases = {
-      nxh = "nix develop -c hx";
-      nxy = "nix develop -c yazi";
-      nxd = "nix develop -c nu";
+        $env.EDITOR = 'hx'
+        $env.GIT_EDITOR = 'hx';
+        $env.DOTFILES = $env.HOME + '/.dotfiles';
+        # Fix ncurses GPG
+        $env.GPG_TTY = (tty)
+      '';
+      shellAliases = {
+        nxh = "nix develop -c hx";
+        nxv = "nix develop -c nvim";
+        nxy = "nix develop -c yazi";
+        nxd = "nix develop -c nu";
+      };
+
     };
-  };
 
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
       };
     };
   };
@@ -217,6 +235,7 @@ in
     "alacritty".source = ./../../dots/alacritty;
     "sway".source = ./../../dots/sway;
     "helix".source = ./../../dots/helix;
+    "nvim".source = ./../../dots/nvim;
     "rofi".source = ./../../dots/rofi/config;
     "tmux".source = ./../../dots/tmux;
   };
