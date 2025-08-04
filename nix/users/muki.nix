@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   stateVersion,
   zen-browser,
   minimal ? false,
@@ -62,6 +63,26 @@ let
   ];
 
   selectedPackages = if minimal then essentialPackages else essentialPackages ++ additionalPackages;
+
+  dotfilesPath = "${config.home.homeDirectory}/.dotfiles";
+
+  sharedAliases = {
+    # Generic Aliases
+    nxh = "nix develop -c hx";
+    nxy = "nix develop -c yazi";
+    nxd = "nix develop -c nu";
+
+    # Quick Dev Shells
+    nxd-js = "nix develop ${dotfilesPath}/nix/templates/js -c nu";
+  };
+
+  sharedSessionVariables = {
+    SHELL = "${pkgs.nushell}/bin/nu";
+    EDITOR = "hx";
+    GIT_EDITOR = "hx";
+    DOTFILES = dotfilesPath;
+    BROWSER = "zen";
+  };
 in
 {
   imports = [
@@ -73,13 +94,8 @@ in
   home.packages = selectedPackages;
   fonts.fontconfig.enable = true;
 
-  home.sessionVariables = {
-    # SHELL = "${pkgs.nushell}/bin/nu";
-    EDITOR = "hx";
-    GIT_EDITOR = "hx";
-    DOTFILES = "$HOME/.dotfiles";
-    BROWSER = "zen";
-  };
+  home.shellAliases = sharedAliases;
+  home.sessionVariables = sharedSessionVariables;
 
   programs = {
     zen-browser = {
@@ -126,6 +142,7 @@ in
 
     nushell = {
       enable = true;
+      environmentVariables = sharedSessionVariables;
       extraConfig = ''
         let carapace_completer = {|spans|
          carapace $spans.0 nushell ...$spans | from json
@@ -148,19 +165,9 @@ in
         }
 
         $env.path ++= ["$DOTFILES/helpers"]
-
-        $env.EDITOR = 'hx'
-        $env.GIT_EDITOR = 'hx';
-        $env.DOTFILES = $env.HOME + '/.dotfiles';
         # Fix ncurses GPG
         $env.GPG_TTY = (tty)
       '';
-      shellAliases = {
-        nxh = "nix develop -c hx";
-        nxv = "nix develop -c nvim";
-        nxy = "nix develop -c yazi";
-        nxd = "nix develop -c nu";
-      };
 
     };
 

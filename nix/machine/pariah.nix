@@ -20,11 +20,12 @@ in
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.muki =
-        { ... }:
+        { config, ... }:
         import ../users/muki.nix {
           inherit
             self
             pkgs
+            config
             stateVersion
             zen-browser
             ;
