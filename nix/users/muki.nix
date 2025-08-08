@@ -82,6 +82,7 @@ let
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
     BROWSER = "zen";
+    NIXOS_OZONE_WL = "1";
   };
 in
 {
