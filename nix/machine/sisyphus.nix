@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   agenix,
   ...
@@ -43,6 +44,12 @@ in
     };
   };
 
+  environment.systemPackages = [
+    pkgs.jellyfin
+    pkgs.jellyfin-web
+    pkgs.jellyfin-ffmpeg
+  ];
+
   services = {
     ddclient = {
       enable = true;
@@ -69,6 +76,19 @@ in
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
       };
+    };
+
+    mullvad-vpn = {
+      enable = true;
+    };
+
+    transmission = {
+      enable = true;
+      package = pkgs.transmission_4;
+    };
+
+    jellyfin = {
+      enable = true;
     };
 
     headscale = {
