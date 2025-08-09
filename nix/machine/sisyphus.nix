@@ -8,13 +8,22 @@ let
   hostName = "sisyphus";
   stateVersion = "24.11";
 
+  tailscaleIp = "100.64.0.4";
   headscalePort = 9892;
+
+  jellyfinPort = 8096;
+  jellyseerrPort = 5055;
+  transmissionPort = 9091;
+  sonarrPort = 8989;
+  radarrPort = 7878;
+  prowlarrPort = 9696;
 in
 {
   imports = [
     ./hardware/sisyphus.nix
     agenix.nixosModules.default
     ./../module/mcwrap.nix
+    ./../module/wgns.nix
   ];
 
   deployment = {
@@ -45,78 +54,75 @@ in
         443
       ];
     };
-
-    wg-quick.interfaces.mullvad = {
-      address = [
-        "10.71.63.172/32"
-        "fc00:bbbb:bbbb:bb01::8:3fab/128"
-      ];
-
-      privateKeyFile = config.age.secrets.mullvad-wg-key.path;
-
-      peers = [
-        {
-          publicKey = "bZQF7VRDRK/JUJ8L6EFzF/zRw2tsqMRk6FesGtTgsC0=";
-          allowedIPs = [
-            "0.0.0.0/0"
-            "::/0"
-          ];
-          endpoint = "138.199.43.91:51820";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-
   };
 
-  systemd.services."netns@" = {
-    description = "%I network namespace";
-    before = [ "network.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      PrivateNetwork = true;
-      ExecStart = "${pkgs.writers.writeDash "netns-up" ''
-        ${pkgs.iproute2}/bin/ip netns add $1
-        ${pkgs.util-linux}/bin/umount /var/run/netns/$1 2>/dev/null || true
-        ${pkgs.util-linux}/bin/mount --bind /proc/self/ns/net /var/run/netns/$1
-      ''} %I";
-      ExecStop = "${pkgs.iproute2}/bin/ip netns del %I";
-      PrivateMounts = false;
-    };
+  # Groups and Folders for Media.
+  users.groups.media = { };
+  users.users = {
+    transmission.extraGroups = [ "media" ];
+    sonarr.extraGroups = [ "media" ];
+    radarr.extraGroups = [ "media" ];
+    jellyfin.extraGroups = [ "media" ];
   };
 
-  systemd.services.wg-vpn = {
-    description = "WireGuard VPN in vpn namespace";
-    bindsTo = [
-      "netns@vpn.service"
-      "wireguard-mullvad.service"
-    ];
-    after = [
-      "netns@vpn.service"
-      "wireguard-mullvad.service"
-    ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = pkgs.writeShellScript "wg-move" ''
-        # Set the Mullvad VPN as the standard iface.
-        ${pkgs.iproute2}/bin/ip link set mullvad netns vpn
-        ${pkgs.iproute2}/bin/ip netns exec vpn ip link set mullvad up
-        ${pkgs.iproute2}/bin/ip netns exec vpn ip route add default dev mullvad
-      '';
-      ExecStop = pkgs.writeShellScript "wg-restore" ''
-        # Move interface back to host (for clean shutdown)
-        ${pkgs.iproute2}/bin/ip netns exec vpn ip link set mullvad netns 1 || true
-      '';
+  systemd.tmpfiles.rules = [
+    "d /media 0755 root root -"
+    "d /media/downloads 0775 transmission media -"
+    "d /media/downloads/complete 0775 transmission media -"
+    "d /media/downloads/incomplete 0775 transmission media -"
+    "d /media/downloads/watch 0775 transmission media -"
+    "d /media/movies 0775 radarr media -"
+    "d /media/downloads/complete/radarr 0775 radarr media -"
+    "d /media/tv 0775 sonarr media -"
+    "d /media/downloads/complete/sonarr 0775 sonarr media -"
+    "d /media/music 0775 jellyfin media -"
+    "Z /media/downloads/complete/radarr 0664 radarr media -"
+    "Z /media/downloads/complete/sonarr 0664 sonarr media -"
+  ];
+
+  services.wgns = {
+    enable = true;
+    instances = {
+      mullvad = {
+        namespace = "mullvad";
+        addresses = [
+          "10.72.143.32/32"
+          "fc00:bbbb:bbbb:bb01::9:8f1f/128"
+        ];
+        privateKeyFile = config.age.secrets.mullvad-wg-key.path;
+        peers = [
+          {
+            publicKey = "G6+A375GVmuFCAtvwgx3SWCWhrMvdQ+cboXQ8zp2ang=";
+            allowedIPs = [
+              "0.0.0.0/0"
+              "::/0"
+            ];
+            endpoint = "23.234.81.127:51820";
+            persistentKeepalive = 25;
+          }
+        ];
+        dns = "100.64.0.7";
+        portForwarding = [
+          # Transmission
+          {
+            port = transmissionPort;
+            hostPort = transmissionPort;
+          }
+        ];
+      };
     };
   };
 
-  # Override to use the Mullvad VPN Namespace
+  # Override transmission so it runs inside of Mullvad.
   systemd.services.transmission = {
-    unitConfig.JoinsNamespaceOf = "netns@vpn.service";
-    serviceConfig.PrivateNetwork = true;
-    bindsTo = [ "netns@vpn.service" ];
+    requires = [ "wgns-mullvad.service" ];
+    after = [ "wgns-mullvad.service" ];
+    serviceConfig.NetworkNamespacePath = "/var/run/netns/mullvad";
+  };
+
+  systemd.services.caddy = {
+    after = [ "headscale.service" ];
+    wants = [ "headscale.service" ];
   };
 
   environment.systemPackages = [
@@ -150,6 +156,30 @@ in
         "tail.muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
+
+        "jellyfin.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString jellyfinPort}
+        '';
+
+        "jellyseerr.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString jellyseerrPort}
+        '';
+
+        "transmission.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString transmissionPort}
+        '';
+
+        "sonarr.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString sonarrPort}
+        '';
+
+        "radarr.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString radarrPort}
+        '';
+
+        "prowlarr.intra.muki.gg:80".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString prowlarrPort}
+        '';
       };
     };
 
@@ -158,16 +188,50 @@ in
       package = pkgs.transmission_4;
       settings = {
         # RPC/UI Settings
-        rpc-bind-address = "0.0.0.0";
+        rpc-port = transmissionPort;
+        rpc-bind-address = "127.0.0.1";
         rpc-host-whitelist-enabled = false;
         rpc-whitelist-enabled = true;
         rpc-whitelist = "127.0.0.1,100.64.0.*";
         rpc-authentication-required = false;
+
+        # Download directories
+        download-dir = "/media/downloads/complete";
+        incomplete-dir = "/media/downloads/incomplete";
+        incomplete-dir-enabled = true;
+
+        # Watch folder for .torrent files
+        watch-dir = "/media/downloads/watch";
+        watch-dir-enabled = true;
+
+        # Other useful settings
+        trash-original-torrent-files = true;
+        rename-partial-files = true;
       };
+    };
+
+    prowlarr = {
+      enable = true;
+      settings.server.port = prowlarrPort;
+    };
+
+    sonarr = {
+      enable = true;
+      settings.server.port = sonarrPort;
+    };
+
+    radarr = {
+      enable = true;
+      settings.server.port = radarrPort;
     };
 
     jellyfin = {
       enable = true;
+    };
+
+    jellyseerr = {
+      enable = true;
+      port = jellyseerrPort;
     };
 
     headscale = {
@@ -182,15 +246,47 @@ in
         dns = {
           magic_dns = true;
           base_domain = "intra.muki.gg";
+          extra_records = [
+            {
+              name = "jellyfin.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+            {
+              name = "jellyseerr.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+            {
+              name = "transmission.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+            {
+              name = "sonarr.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+            {
+              name = "radarr.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+            {
+              name = "prowlarr.intra.muki.gg";
+              type = "A";
+              value = tailscaleIp;
+            }
+          ];
         };
       };
     };
 
-    mcWrap = {
-      enable = true;
-      scriptPath = "/home/minecraft/atm9/run.sh";
-      user = "minecraft";
-      group = "minecraft";
-    };
+    # mcWrap = {
+    #   enable = true;
+    #   scriptPath = "/home/minecraft/atm9/run.sh";
+    #   user = "minecraft";
+    #   group = "minecraft";
+    # };
   };
 }
