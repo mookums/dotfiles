@@ -10,4 +10,12 @@ in
     muki
     sisyphus
   ];
+  "mullvad-wg.age".publicKeys = [
+    muki
+    sisyphus
+  ];
+  "mullvad-wg-key.age".publicKeys = [
+    muki
+    sisyphus
+  ];
 }
