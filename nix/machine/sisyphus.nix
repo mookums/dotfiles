@@ -77,7 +77,7 @@ in
     "d /media/downloads/complete/sonarr 0775 sonarr media -"
     "d /media/music 0775 jellyfin media -"
     "Z /media/downloads/complete/radarr 0664 radarr media -"
-    "Z /media/downloads/complete/sonarr 0664 sonarr media -"
+    "Z /media/downloads/complete/tv-sonarr 0664 sonarr media -"
   ];
 
   services.wgns = {
