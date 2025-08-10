@@ -71,13 +71,13 @@ in
     "d /media/downloads/complete 0775 transmission media -"
     "d /media/downloads/incomplete 0775 transmission media -"
     "d /media/downloads/watch 0775 transmission media -"
-    "d /media/movies 0775 radarr media -"
+    "d /media/movies 0775 root media -"
     "d /media/downloads/complete/radarr 0775 radarr media -"
-    "d /media/tv 0775 sonarr media -"
-    "d /media/downloads/complete/sonarr 0775 sonarr media -"
+    "d /media/tv 0775 root media -"
+    "d /media/downloads/complete/tv-sonarr 0775 root media -"
     "d /media/music 0775 jellyfin media -"
-    "Z /media/downloads/complete/radarr 0664 radarr media -"
-    "Z /media/downloads/complete/tv-sonarr 0664 sonarr media -"
+    "Z /media/downloads/complete/radarr 0775 root media -"
+    "Z /media/downloads/complete/tv-sonarr 0775 root media -"
   ];
 
   services.wgns = {
