@@ -80,39 +80,6 @@ in
     "Z /media/downloads/complete/tv-sonarr 0775 root media -"
   ];
 
-  services.wgns = {
-    enable = true;
-    instances = {
-      mullvad = {
-        namespace = "mullvad";
-        addresses = [
-          "10.72.143.32/32"
-          "fc00:bbbb:bbbb:bb01::9:8f1f/128"
-        ];
-        privateKeyFile = config.age.secrets.mullvad-wg-key.path;
-        peers = [
-          {
-            publicKey = "G6+A375GVmuFCAtvwgx3SWCWhrMvdQ+cboXQ8zp2ang=";
-            allowedIPs = [
-              "0.0.0.0/0"
-              "::/0"
-            ];
-            endpoint = "23.234.81.127:51820";
-            persistentKeepalive = 25;
-          }
-        ];
-        dns = "100.64.0.7";
-        portForwarding = [
-          # Transmission
-          {
-            port = transmissionPort;
-            hostPort = transmissionPort;
-          }
-        ];
-      };
-    };
-  };
-
   # Override transmission so it runs inside of Mullvad.
   systemd.services.transmission = {
     requires = [ "wgns-mullvad.service" ];
@@ -132,6 +99,39 @@ in
   ];
 
   services = {
+    wgns = {
+      enable = true;
+      instances = {
+        mullvad = {
+          namespace = "mullvad";
+          addresses = [
+            "10.72.143.32/32"
+            "fc00:bbbb:bbbb:bb01::9:8f1f/128"
+          ];
+          privateKeyFile = config.age.secrets.mullvad-wg-key.path;
+          peers = [
+            {
+              publicKey = "G6+A375GVmuFCAtvwgx3SWCWhrMvdQ+cboXQ8zp2ang=";
+              allowedIPs = [
+                "0.0.0.0/0"
+                "::/0"
+              ];
+              endpoint = "23.234.81.127:51820";
+              persistentKeepalive = 25;
+            }
+          ];
+          dns = "100.64.0.7";
+          portForwarding = [
+            # Transmission
+            {
+              port = transmissionPort;
+              hostPort = transmissionPort;
+            }
+          ];
+        };
+      };
+    };
+
     ddclient = {
       enable = true;
       server = "api.cloudflare.com/client/v4";
@@ -203,6 +203,11 @@ in
         # Watch folder for .torrent files
         watch-dir = "/media/downloads/watch";
         watch-dir-enabled = true;
+
+        # Blocklist
+        # blocklist-enabled = true;
+        # blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
+        # blocklist-updates-enabled = true;
 
         # Other useful settings
         trash-original-torrent-files = true;

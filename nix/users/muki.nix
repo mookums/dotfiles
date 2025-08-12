@@ -2,7 +2,6 @@
   pkgs,
   config,
   stateVersion,
-  zen-browser,
   minimal ? false,
   ...
 }:
@@ -42,7 +41,8 @@ let
     hyperfine
     poop
     # Apps
-    google-chrome
+    jellyfin-media-player
+    chromium
     thunderbird
     gimp
     (discord.override {
@@ -81,15 +81,11 @@ let
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
-    BROWSER = "zen";
+    BROWSER = "firefox";
     NIXOS_OZONE_WL = "1";
   };
 in
 {
-  imports = [
-    zen-browser.homeModules.beta
-  ];
-
   home.stateVersion = stateVersion;
 
   home.packages = selectedPackages;
@@ -99,20 +95,61 @@ in
   home.sessionVariables = sharedSessionVariables;
 
   programs = {
-    zen-browser = {
+    firefox = {
       enable = true;
+      languagePacks = [ "en-US" ];
 
+      # about:policies#documentation
       policies = {
-        DisableAppUpdate = true;
         DisableTelemetry = true;
-        DisablePocket = true;
-        DontCheckDefaultBrowser = true;
-        NoDefaultBookmarks = true;
+        DisableFirefoxStudies = true;
         EnableTrackingProtection = {
           Value = true;
           Locked = true;
           Cryptomining = true;
           Fingerprinting = true;
+        };
+        DisablePocket = true;
+        DontCheckDefaultBrowser = true;
+        NoDefaultBookmarks = true;
+        DisableProfileImport = true;
+        DisplayBookmarksToolbar = "never";
+        DisplayMenuBar = "default-off";
+        SearchBar = "unified";
+
+        ExtensionSettings = {
+          # uBlock Origin
+          "uBlock0@raymondhill.net" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          # Privacy Badger
+          "jid1-MnnxcxisBPnSXQ@jetpack" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          # Bitwarden
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          # Consent-O-Matic
+          "gdpr@cavi.au.dk" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/consent-o-matic/latest.xpi";
+            installation_mode = "force_installed";
+          };
+        };
+
+        # about:config
+        Preferences = {
+          "sidebar.verticalTabs" = {
+            Value = true;
+            Status = "locked";
+          };
+          "browser.ml.chat.enabled" = {
+            Value = false;
+            Status = "locked";
+          };
         };
       };
     };
@@ -134,7 +171,6 @@ in
 
     helix = {
       enable = true;
-
       extraPackages = with pkgs; [
         nil
         nixfmt-rfc-style
@@ -169,7 +205,6 @@ in
         # Fix ncurses GPG
         $env.GPG_TTY = (tty)
       '';
-
     };
 
     carapace = {
@@ -212,31 +247,12 @@ in
         "image/gif"
       ];
     };
-    zen = {
-      name = "Zen";
-      exec = "zen %U";
-      icon = "zen-browser";
-      mimeType = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-    };
   };
 
   xdg.mimeApps.defaultApplications = {
     "application/pdf" = "zathura.desktop";
     "image/jpeg" = "feh.desktop";
     "image/png" = "feh.desktop";
-    "text/html" = "zen.desktop";
-    "text/xml" = "zen.desktop";
-    "application/xhtml+xml" = "zen.desktop";
-    "application/xml" = "zen.desktop";
-    "x-scheme-handler/http" = "zen.desktop";
-    "x-scheme-handler/https" = "zen.desktop";
   };
 
   xdg.configFile = {

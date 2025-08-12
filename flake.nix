@@ -9,9 +9,6 @@
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -20,7 +17,6 @@
       nixpkgs,
       agenix,
       home-manager,
-      zen-browser,
       ...
     }:
     let
@@ -31,14 +27,7 @@
         config = {
           allowUnfree = true;
         };
-        overlays = [
-          # (final: prev: {
-          # zen-browser = zen-browser.packages.${system}.default;
-          # helix = helix.packages.${system}.default;
-          # })
-        ];
       };
-
     in
     {
 
@@ -57,7 +46,6 @@
               self
               home-manager
               agenix
-              zen-browser
               ;
           };
         };
