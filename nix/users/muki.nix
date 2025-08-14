@@ -150,6 +150,10 @@ in
             Value = false;
             Status = "locked";
           };
+          "browser.newtabpage.enabled" = {
+            Value = false;
+            Status = "locked";
+          };
         };
       };
     };
