@@ -154,6 +154,14 @@ in
             Value = false;
             Status = "locked";
           };
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = {
+            Value = false;
+            Status = "locked";
+          };
+          "browser.newtabpage.activity-stream.feeds.topsites" = {
+            Value = false;
+            Status = "locked";
+          };
         };
       };
     };
