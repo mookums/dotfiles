@@ -32,12 +32,6 @@ in
     }
   ];
 
-  age.secrets = {
-    mullvad-wg-key = {
-      file = ./../../secrets/mullvad-wg-key.age;
-    };
-  };
-
   system.stateVersion = stateVersion;
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";

@@ -41,7 +41,6 @@ let
     hyperfine
     poop
     # Apps
-    jellyfin-media-player
     chromium
     thunderbird
     gimp
@@ -265,6 +264,13 @@ in
     "application/pdf" = "zathura.desktop";
     "image/jpeg" = "feh.desktop";
     "image/png" = "feh.desktop";
+    # Firefox as Browser
+    "default-web-browser" = [ "firefox.desktop" ];
+    "text/html" = [ "firefox.desktop" ];
+    "x-scheme-handler/http" = [ "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "firefox.desktop" ];
+    "x-scheme-handler/about" = [ "firefox.desktop" ];
+    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
   };
 
   xdg.configFile = {
