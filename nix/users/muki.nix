@@ -23,6 +23,7 @@ let
     lldb
     valgrind
     linuxPackages.perf
+    gf
     # Apps
     feh
     zathura
