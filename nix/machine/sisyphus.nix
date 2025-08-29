@@ -8,15 +8,7 @@ let
   hostName = "sisyphus";
   stateVersion = "24.11";
 
-  tailscaleIp = "100.64.0.4";
   headscalePort = 9892;
-
-  jellyfinPort = 8096;
-  jellyseerrPort = 5055;
-  transmissionPort = 9091;
-  sonarrPort = 8989;
-  radarrPort = 7878;
-  prowlarrPort = 9696;
 in
 {
   imports = [
@@ -56,48 +48,6 @@ in
     };
   };
 
-  # Groups and Folders for Media.
-  users.groups.media = { };
-  users.users = {
-    transmission.extraGroups = [ "media" ];
-    sonarr.extraGroups = [ "media" ];
-    radarr.extraGroups = [ "media" ];
-    jellyfin.extraGroups = [ "media" ];
-  };
-
-  systemd.tmpfiles.rules = [
-    "d /media 0755 root root -"
-    "d /media/downloads 0775 transmission media -"
-    "d /media/downloads/complete 0775 transmission media -"
-    "d /media/downloads/incomplete 0775 transmission media -"
-    "d /media/downloads/watch 0775 transmission media -"
-    "d /media/movies 0775 root media -"
-    "d /media/downloads/complete/radarr 0775 radarr media -"
-    "d /media/tv 0775 root media -"
-    "d /media/downloads/complete/tv-sonarr 0775 root media -"
-    "d /media/music 0775 jellyfin media -"
-    "Z /media/downloads/complete/radarr 0775 root media -"
-    "Z /media/downloads/complete/tv-sonarr 0775 root media -"
-  ];
-
-  # Override transmission so it runs inside of Mullvad.
-  systemd.services.transmission = {
-    requires = [ "wgns-mullvad.service" ];
-    after = [ "wgns-mullvad.service" ];
-    serviceConfig.NetworkNamespacePath = "/var/run/netns/mullvad";
-  };
-
-  systemd.services.caddy = {
-    after = [ "headscale.service" ];
-    wants = [ "headscale.service" ];
-  };
-
-  environment.systemPackages = [
-    pkgs.jellyfin
-    pkgs.jellyfin-web
-    pkgs.jellyfin-ffmpeg
-  ];
-
   services = {
     wgns = {
       enable = true;
@@ -121,13 +71,7 @@ in
             }
           ];
           dns = "100.64.0.7";
-          portForwarding = [
-            # Transmission
-            {
-              port = transmissionPort;
-              hostPort = transmissionPort;
-            }
-          ];
+          portForwarding = [ ];
         };
       };
     };
@@ -156,87 +100,7 @@ in
         "tail.muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
-
-        "jellyfin.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString jellyfinPort}
-        '';
-
-        "jellyseerr.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString jellyseerrPort}
-        '';
-
-        "transmission.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString transmissionPort}
-        '';
-
-        "sonarr.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString sonarrPort}
-        '';
-
-        "radarr.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString radarrPort}
-        '';
-
-        "prowlarr.intra.muki.gg:80".extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString prowlarrPort}
-        '';
       };
-    };
-
-    transmission = {
-      enable = true;
-      package = pkgs.transmission_4;
-      settings = {
-        # RPC/UI Settings
-        rpc-port = transmissionPort;
-        rpc-bind-address = "127.0.0.1";
-        rpc-host-whitelist-enabled = false;
-        rpc-whitelist-enabled = true;
-        rpc-whitelist = "127.0.0.1,100.64.0.*";
-        rpc-authentication-required = false;
-
-        # Download directories
-        download-dir = "/media/downloads/complete";
-        incomplete-dir = "/media/downloads/incomplete";
-        incomplete-dir-enabled = true;
-
-        # Watch folder for .torrent files
-        watch-dir = "/media/downloads/watch";
-        watch-dir-enabled = true;
-
-        # Blocklist
-        # blocklist-enabled = true;
-        # blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
-        # blocklist-updates-enabled = true;
-
-        # Other useful settings
-        trash-original-torrent-files = true;
-        rename-partial-files = true;
-      };
-    };
-
-    prowlarr = {
-      enable = true;
-      settings.server.port = prowlarrPort;
-    };
-
-    sonarr = {
-      enable = true;
-      settings.server.port = sonarrPort;
-    };
-
-    radarr = {
-      enable = true;
-      settings.server.port = radarrPort;
-    };
-
-    jellyfin = {
-      enable = true;
-    };
-
-    jellyseerr = {
-      enable = true;
-      port = jellyseerrPort;
     };
 
     headscale = {
@@ -251,38 +115,7 @@ in
         dns = {
           magic_dns = true;
           base_domain = "intra.muki.gg";
-          extra_records = [
-            {
-              name = "jellyfin.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-            {
-              name = "jellyseerr.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-            {
-              name = "transmission.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-            {
-              name = "sonarr.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-            {
-              name = "radarr.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-            {
-              name = "prowlarr.intra.muki.gg";
-              type = "A";
-              value = tailscaleIp;
-            }
-          ];
+          extra_records = [ ];
         };
       };
     };
