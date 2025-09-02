@@ -70,10 +70,10 @@ let
     # Generic Aliases
     nxh = "nix develop -c hx";
     nxy = "nix develop -c yazi";
-    nxd = "nix develop -c nu";
+    nxd = "nix develop";
 
     # Quick Dev Shells
-    nxd-js = "nix develop ${dotfilesPath}/nix/templates/js -c nu";
+    nxd-js = "nix develop ${dotfilesPath}/nix/templates/js";
   };
 
   sharedSessionVariables = {
