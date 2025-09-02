@@ -26,6 +26,7 @@
     xdgOpenUsePortal = true;
     wlr.enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
   };
@@ -42,8 +43,6 @@
     jq
     mako
     wl-clipboard
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-wlr
     wdisplays
   ];
 }

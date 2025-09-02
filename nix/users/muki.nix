@@ -83,6 +83,7 @@ let
     DOTFILES = dotfilesPath;
     BROWSER = "firefox";
     NIXOS_OZONE_WL = "1";
+    XDG_CURRENT_DESKTOP = "sway";
   };
 in
 {
@@ -244,47 +245,58 @@ in
     };
   };
 
-  xdg.desktopEntries = {
-    zathura = {
-      name = "Zathura";
-      exec = "zathura %f";
-      mimeType = [ "application/pdf" ];
+  xdg = {
+    enable = true;
+
+    desktopEntries = {
+      zathura = {
+        name = "Zathura";
+        exec = "zathura %f";
+        mimeType = [ "application/pdf" ];
+      };
+      feh = {
+        name = "Feh";
+        exec = "feh %f";
+        mimeType = [
+          "image/jpeg"
+          "image/png"
+          "image/gif"
+        ];
+      };
     };
-    feh = {
-      name = "Feh";
-      exec = "feh %f";
-      mimeType = [
-        "image/jpeg"
-        "image/png"
-        "image/gif"
-      ];
+
+    mime.enable = true;
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "zathura.desktop";
+
+        "images/jpeg" = "feh.desktop";
+        "images/png" = "feh.desktop";
+        # Firefox as Browser
+        "default-web-browser" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+
     };
-  };
 
-  xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "zathura.desktop";
-    "image/jpeg" = "feh.desktop";
-    "image/png" = "feh.desktop";
-    # Firefox as Browser
-    "default-web-browser" = [ "firefox.desktop" ];
-    "text/html" = [ "firefox.desktop" ];
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
-    "x-scheme-handler/about" = [ "firefox.desktop" ];
-    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-  };
+    configFile = {
+      "alacritty".source = ./../../dots/alacritty;
+      "sway".source = ./../../dots/sway;
+      "helix".source = ./../../dots/helix;
+      "nvim".source = ./../../dots/nvim;
+      "rofi".source = ./../../dots/rofi/config;
+      "tmux".source = ./../../dots/tmux;
+    };
 
-  xdg.configFile = {
-    "alacritty".source = ./../../dots/alacritty;
-    "sway".source = ./../../dots/sway;
-    "helix".source = ./../../dots/helix;
-    "nvim".source = ./../../dots/nvim;
-    "rofi".source = ./../../dots/rofi/config;
-    "tmux".source = ./../../dots/tmux;
-  };
-
-  xdg.dataFile = {
-    "rofi".source = ./../../dots/rofi/share;
+    dataFile = {
+      "rofi".source = ./../../dots/rofi/share;
+    };
   };
 
   home.file = {
