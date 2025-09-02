@@ -77,7 +77,7 @@ let
   };
 
   sharedSessionVariables = {
-    SHELL = "${pkgs.nushell}/bin/nu";
+    SHELL = "${pkgs.bash}/bin/bash";
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
@@ -190,39 +190,19 @@ in
       ];
     };
 
-    nushell = {
+    bash = {
       enable = true;
-      environmentVariables = sharedSessionVariables;
-      extraConfig = ''
-        let carapace_completer = {|spans|
-         carapace $spans.0 nushell ...$spans | from json
-         }
-
-        $env.config = {
-          buffer_editor: 'hx',
-          edit_mode: 'vi',
-          show_banner: false,
-          completions: {
-            case_sensitive: false,
-            quick: true,
-            partial: true,
-            algorithm: 'fuzzy',
-            external: {
-              enable: true,
-              completer: $carapace_completer
-            }
-          }
-        }
-
-        $env.path ++= ["$DOTFILES/helpers"]
-        # Fix ncurses GPG
-        $env.GPG_TTY = (tty)
-      '';
+      sessionVariables = sharedSessionVariables;
+      enableCompletion = true;
+      historyControl = [
+        "ignoredups"
+        "ignorespace"
+      ];
     };
 
     carapace = {
       enable = true;
-      enableNushellIntegration = true;
+      enableBashIntegration = true;
     };
 
     starship = {

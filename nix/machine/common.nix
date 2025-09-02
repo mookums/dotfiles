@@ -43,7 +43,7 @@ in
         keys = authorizedKeys;
       };
       isNormalUser = true;
-      shell = pkgs.nushell;
+      shell = pkgs.bash;
       home = "/home/muki";
       initialPassword = "muki";
       extraGroups = [
