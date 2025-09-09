@@ -45,6 +45,7 @@ let
     chromium
     thunderbird
     gimp
+    darktable
     (discord.override {
       withOpenASAR = true;
       withVencord = true;
@@ -83,6 +84,7 @@ let
     DOTFILES = dotfilesPath;
     BROWSER = "firefox";
     NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
     XDG_CURRENT_DESKTOP = "sway";
   };
 in
