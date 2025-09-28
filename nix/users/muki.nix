@@ -271,6 +271,7 @@ in
       "alacritty".source = ./../../dots/alacritty;
       # "sway".source = ./../../dots/sway;
       "niri".source = ./../../dots/niri;
+      "waybar".source = ./../../dots/waybar;
       "helix".source = ./../../dots/helix;
       "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;

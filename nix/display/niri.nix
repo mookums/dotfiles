@@ -20,8 +20,7 @@
   services.udisks2.enable = true;
 
   environment.systemPackages = with pkgs; [
-    i3bar-river
-    i3status
+    waybar
     xwayland-satellite
     rofi-wayland
     pavucontrol

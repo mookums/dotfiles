@@ -33,9 +33,9 @@ hotkey-overlay {
     skip-at-startup
 }
 
-spawn-at-startup "swaybg" "-o" "*" "-i" "~/.wallpaper/thegulfstream.jpg" "-m" "fill"
+spawn-sh-at-startup "swaybg -o \"*\" -i ~/.wallpaper/thegulfstream.jpg -m fill &"
 spawn-at-startup "mako"
-spawn-at-startup "i3bar-river"
+spawn-at-startup "waybar"
 
 window-rule {
     match app-id="pavucontrol"
@@ -87,6 +87,7 @@ binds {
    
     // Fullscreen
     Mod+F { fullscreen-window; }
+    Mod+Shift+F { toggle-windowed-fullscreen; }
    
     // Layout changes
     Mod+S { maximize-column; }
