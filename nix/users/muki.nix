@@ -85,7 +85,7 @@ let
     BROWSER = "firefox";
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    XDG_CURRENT_DESKTOP = "sway";
+    # XDG_CURRENT_DESKTOP = "niri";
   };
 in
 {
@@ -269,7 +269,8 @@ in
 
     configFile = {
       "alacritty".source = ./../../dots/alacritty;
-      "sway".source = ./../../dots/sway;
+      # "sway".source = ./../../dots/sway;
+      "niri".source = ./../../dots/niri;
       "helix".source = ./../../dots/helix;
       "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;

@@ -1,0 +1,140 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+    
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+layout {
+    gaps 10
+    
+    default-column-width {
+        proportion 0.5
+    }
+    
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+spawn-at-startup "swaybg" "-o" "*" "-i" "~/.wallpaper/thegulfstream.jpg" "-m" "fill"
+spawn-at-startup "mako"
+spawn-at-startup "i3bar-river"
+
+window-rule {
+    match app-id="pavucontrol"
+    open-floating true
+}
+
+binds {
+    // Mod key (Super/Windows key)
+    
+    // Basic window management
+    Mod+Shift+Q { close-window; }
+    Mod+Return { spawn-sh "alacritty -e $SHELL -c ~/.dotfiles/helpers/term-start.sh"; }
+    Mod+B { spawn "firefox"; }
+    Mod+D { spawn "rofi" "-show" "drun" "-show-icons" "-columns" "3" "-lines" "9"; }
+    
+    // Screenshots
+    Mod+Print { screenshot; }
+    Mod+Shift+Print { screenshot-screen; }
+    Mod+Ctrl+Print { screenshot-window; }
+    
+    // Audio controls
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioRaiseVolume { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "+5%"; }
+    XF86AudioLowerVolume { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "-5%"; }
+    XF86AudioMute { spawn "pactl" "set-sink-mute" "@DEFAULT_SINK@" "toggle"; }
+    XF86AudioMicMute { spawn "pactl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
+    
+    // Brightness controls
+    XF86MonBrightnessUp { spawn "light" "-A" "5"; }
+    XF86MonBrightnessDown { spawn "light" "-U" "5"; }
+
+    // Focus movement (Niri uses column-based layout)
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up { focus-window-up; }
+    Mod+Down { focus-window-down; }
+
+    // Move windows
+    Mod+Shift+Left { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up { move-window-up; }
+    Mod+Shift+Down { move-window-down; }
+
+    // Column management
+    Mod+H { consume-or-expel-window-left; }
+    Mod+V { consume-or-expel-window-right; }
+   
+    // Fullscreen
+    Mod+F { fullscreen-window; }
+   
+    // Layout changes
+    Mod+S { maximize-column; }
+    // Mod+E { set-column-width "proportion" "0.5"; }
+
+    // Floating (center window)
+    Mod+Shift+Space { center-column; }
+
+    // Workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+
+    // Move to workspaces
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+
+    // System controls
+    // Mod+Shift+C { reload-config; }
+    Mod+Shift+E { quit; }
+
+    // Resize bindings (using Ctrl+Mod instead of resize mode)
+    Mod+Ctrl+J { set-column-width "-10%"; }
+    Mod+Ctrl+Semicolon { set-column-width "+10%"; }
+    Mod+Ctrl+K { set-window-height "+10%"; }
+    Mod+Ctrl+L { set-window-height "-10%"; }
+    
+    // Alternative resize with arrow keys
+    Mod+Ctrl+Left { set-column-width "-10%"; }
+    Mod+Ctrl+Right { set-column-width "+10%"; }
+    Mod+Ctrl+Down { set-window-height "+10%"; }
+    Mod+Ctrl+Up { set-window-height "-10%"; }
+    
+    // Original Mod+R for switching between preset column widths
+    Mod+R { switch-preset-column-width; }
+}
