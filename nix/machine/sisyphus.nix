@@ -14,7 +14,7 @@ in
   imports = [
     ./hardware/sisyphus.nix
     agenix.nixosModules.default
-    ./../module/mcwrap.nix
+    # ./../module/mcwrap.nix
     # ./../module/wgns.nix
   ];
 
@@ -27,9 +27,6 @@ in
   age.secrets = {
     cloudflare-api = {
       file = ./../../secrets/cloudflare-api.age;
-    };
-    mullvad-wg-key = {
-      file = ./../../secrets/mullvad-wg-key.age;
     };
   };
 
