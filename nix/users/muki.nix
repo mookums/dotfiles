@@ -56,7 +56,12 @@ let
     slack
     # CAD
     freecad
-    kicad
+    (kicad.overrideAttrs (old: {
+      postInstall = old.postInstall or "" + ''
+        wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
+      '';
+    }))
+    orca-slicer
     # Video
     obs-studio
     kdePackages.kdenlive
