@@ -7,11 +7,6 @@ auto-format = true
 check = { command = "clippy" }
 
 [[language]]
-name = "typescript"
-formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-[[language]]
 name = "svelte"
 auto-format = true
 
@@ -19,3 +14,71 @@ auto-format = true
 name = "python"
 language-servers = ["ty", "ruff", "basedpyright"]
 auto-format = true
+
+[language-server.deno-lsp]
+args = ["lsp"]
+command = "deno"
+required-root-patterns = ["deno.*"]
+
+[language-server.deno-lsp.config.deno]
+enable = true
+suggest = { completeFunctionCalls = false, imports = { hosts = { "https://deno.land" = true } } }
+
+[language-server.typescript-language-server]
+required-root-patterns = ["package.json", "tsconfig.json"]
+
+[[language]]
+name = "javascript"
+language-id = "javascript"
+scope = "source.js"
+injection-regex = "^(js|javascript)$"
+file-types = ["js"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "deno.jsonc", "package.json", "tsconfig.json"]
+auto-format = true
+language-servers = [
+  { name = "deno-lsp" },
+  { name = "typescript-language-server" },
+]
+
+[[language]]
+name = "jsx"
+language-id = "javascriptreact"
+scope = "source.jsx"
+injection-regex = "^(jsx)$"
+file-types = ["jsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "deno.jsonc", "package.json", "tsconfig.json"]
+auto-format = true
+language-servers = [
+  { name = "deno-lsp" },
+  { name = "typescript-language-server" },
+]
+
+[[language]]
+name = "typescript"
+language-id = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "deno.jsonc", "package.json", "tsconfig.json"]
+auto-format = true
+language-servers = [
+  { name = "deno-lsp" },
+  { name = "typescript-language-server" },
+]
+
+[[language]]
+name = "tsx"
+language-id = "typescriptreact"
+scope = "source.tsx"
+injection-regex = "^(tsx)$"
+file-types = ["tsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "deno.jsonc", "package.json", "tsconfig.json"]
+auto-format = true
+language-servers = [
+  { name = "deno-lsp" },
+  { name = "typescript-language-server" },
+]
