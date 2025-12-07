@@ -1,0 +1,4 @@
+default_layout "compact"
+simplified_ui true
+show_startup_tips false
+show_release_notes false

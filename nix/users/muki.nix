@@ -10,7 +10,9 @@ let
     # Development
     alacritty
     git
-    tmux
+    zellij
+    lazygit
+    # tmux
     fzf
     twm
     ripgrep
@@ -284,7 +286,8 @@ in
       "helix".source = ./../../dots/helix;
       "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;
-      "tmux".source = ./../../dots/tmux;
+      # "tmux".source = ./../../dots/tmux;
+      "zellij".source = ./../../dots/zellij;
     };
 
     dataFile = {

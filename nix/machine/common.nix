@@ -80,7 +80,8 @@ in
     wget
     curl
     git
-    tmux
+    zellij
+    # tmux
     zip
     unzip
     file
