@@ -33,7 +33,7 @@
 
   environment.systemPackages = with pkgs; [
     i3status
-    rofi-wayland
+    rofi
     pavucontrol
     pcmanfm
     wireplumber

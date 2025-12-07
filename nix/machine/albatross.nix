@@ -42,7 +42,7 @@ in
 
   deployment = {
     targetUser = "root";
-    targetHost = "${hostName}.intra.muki.gg";
+    targetHost = hostName;
     tags = [ "desktop" ];
     allowLocalDeployment = true;
   };

@@ -1,12 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
- services.displayManager.ly = {
-     enable = true;
- };
+  services.displayManager.ly = {
+    enable = true;
+  };
 
   services.pipewire = {
     enable = true;
@@ -20,7 +21,7 @@
   services.udisks2.enable = true;
 
   environment.systemPackages = with pkgs; [
-    rofi-wayland
+    rofi
     waybar
     pavucontrol
     pcmanfm

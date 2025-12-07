@@ -22,7 +22,7 @@ let
     gdb
     lldb
     valgrind
-    linuxPackages.perf
+    perf
     gf
     # Apps
     feh
@@ -34,13 +34,24 @@ let
     nerd-fonts.jetbrains-mono
   ];
 
-  additionalPackages = with pkgs; [
+  engiPackages = with pkgs; [
     # Development
     bruno
     hotspot
     heaptrack
     hyperfine
     poop
+    # CAD
+    freecad
+    (kicad.overrideAttrs (old: {
+      postInstall = old.postInstall or "" + ''
+        wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
+      '';
+    }))
+    orca-slicer
+  ];
+
+  miscPackages = with pkgs; [
     # Apps
     chromium
     thunderbird
@@ -54,21 +65,14 @@ let
     vlc
     prismlauncher
     slack
-    # CAD
-    freecad
-    (kicad.overrideAttrs (old: {
-      postInstall = old.postInstall or "" + ''
-        wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
-      '';
-    }))
-    orca-slicer
     # Video
     obs-studio
     kdePackages.kdenlive
     tenacity
   ];
 
-  selectedPackages = if minimal then essentialPackages else essentialPackages ++ additionalPackages;
+  selectedPackages =
+    if minimal then essentialPackages else essentialPackages ++ engiPackages ++ miscPackages;
 
   dotfilesPath = "${config.home.homeDirectory}/.dotfiles";
 

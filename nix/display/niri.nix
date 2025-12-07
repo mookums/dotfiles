@@ -22,7 +22,7 @@
   environment.systemPackages = with pkgs; [
     waybar
     xwayland-satellite
-    rofi-wayland
+    rofi
     pavucontrol
     pcmanfm
     wireplumber

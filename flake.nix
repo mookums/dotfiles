@@ -2,12 +2,12 @@
   description = "Muki's NixOS :3";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -56,6 +56,7 @@
         janus = import ./nix/machine/janus.nix;
         sisyphus = import ./nix/machine/sisyphus.nix;
         pariah = import ./nix/machine/pariah.nix;
+        fog = import ./nix/machine/fog.nix;
         # vega = import ./nix/machine/vega.nix { inherit pkgs; };
       };
 
