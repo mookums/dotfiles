@@ -12,8 +12,8 @@ in
 {
   imports = [
     ./hardware/pariah.nix
-    # ../display/sway.nix
-    ../display/niri.nix
+    ../display/sway.nix
+    # ../display/niri.nix
     agenix.nixosModules.default
     home-manager.nixosModules.home-manager
     {

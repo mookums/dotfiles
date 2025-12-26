@@ -11,9 +11,8 @@ let
     alacritty
     git
     zellij
-    lazygit
-    # tmux
     fzf
+    tmux
     twm
     ripgrep
     fastfetch
@@ -280,13 +279,13 @@ in
 
     configFile = {
       "alacritty".source = ./../../dots/alacritty;
-      # "sway".source = ./../../dots/sway;
-      "niri".source = ./../../dots/niri;
+      "sway".source = ./../../dots/sway;
+      # "niri".source = ./../../dots/niri;
       "waybar".source = ./../../dots/waybar;
       "helix".source = ./../../dots/helix;
       "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;
-      # "tmux".source = ./../../dots/tmux;
+      "tmux".source = ./../../dots/tmux;
       "zellij".source = ./../../dots/zellij;
     };
 
