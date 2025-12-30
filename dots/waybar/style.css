@@ -154,8 +154,8 @@
 }
 
 #workspaces button.focused {
-    border-color: #4c7899;
-    color: white;
+    /* border-color: #4c7899; */
+    /* color: white; */
     /* background-color: #285577; */
 }
 

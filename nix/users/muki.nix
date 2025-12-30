@@ -43,12 +43,32 @@ let
     hyperfine
     poop
     # CAD
-    freecad
-    (kicad.overrideAttrs (old: {
-      postInstall = old.postInstall or "" + ''
+    (pkgs.symlinkJoin {
+      name = "freecad-wrapped";
+      paths = [ freecad ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram "$out/bin/freecad" --set QT_QPA_PLATFORM xcb
+      '';
+    })
+    (pkgs.symlinkJoin {
+      name = "kicad-wrapped";
+      paths = [ kicad ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
         wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
       '';
-    }))
+    })
+    # (freecad.overrideAttrs (old: {
+    #   postInstall = old.postInstall or "" + ''
+    #     wrapProgram "$out/bin/freecad" --set QT_QPA_PLATFORM xcb
+    #   '';
+    # }))
+    # (kicad.overrideAttrs (old: {
+    #   postInstall = old.postInstall or "" + ''
+    #     wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
+    #   '';
+    # }))
     orca-slicer
   ];
 
@@ -286,7 +306,7 @@ in
       "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;
       "tmux".source = ./../../dots/tmux;
-      "zellij".source = ./../../dots/zellij;
+      # "zellij".source = ./../../dots/zellij;
     };
 
     dataFile = {
