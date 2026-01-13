@@ -8,7 +8,8 @@
 let
   essentialPackages = with pkgs; [
     # Development
-    alacritty
+    # alacritty
+    ghostty
     git
     zellij
     fzf
@@ -59,16 +60,6 @@ let
         wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
       '';
     })
-    # (freecad.overrideAttrs (old: {
-    #   postInstall = old.postInstall or "" + ''
-    #     wrapProgram "$out/bin/freecad" --set QT_QPA_PLATFORM xcb
-    #   '';
-    # }))
-    # (kicad.overrideAttrs (old: {
-    #   postInstall = old.postInstall or "" + ''
-    #     wrapProgram "$out/bin/kicad" --set GDK_BACKEND x11
-    #   '';
-    # }))
     orca-slicer
   ];
 
@@ -102,9 +93,6 @@ let
     nxh = "nix develop -c hx";
     nxy = "nix develop -c yazi";
     nxd = "nix develop";
-
-    # Quick Dev Shells
-    nxd-js = "nix develop ${dotfilesPath}/nix/templates/js";
   };
 
   sharedSessionVariables = {
@@ -113,7 +101,7 @@ let
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
     BROWSER = "firefox";
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     # XDG_CURRENT_DESKTOP = "niri";
   };
@@ -298,12 +286,14 @@ in
     };
 
     configFile = {
-      "alacritty".source = ./../../dots/alacritty;
+      # "alacritty".source = ./../../dots/alacritty;
+      "ghostty".source = ./../../dots/ghostty;
       "sway".source = ./../../dots/sway;
+      "i3".source = ./../../dots/i3;
       # "niri".source = ./../../dots/niri;
-      "waybar".source = ./../../dots/waybar;
+      # "waybar".source = ./../../dots/waybar;
       "helix".source = ./../../dots/helix;
-      "nvim".source = ./../../dots/nvim;
+      # "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;
       "tmux".source = ./../../dots/tmux;
       # "zellij".source = ./../../dots/zellij;
@@ -315,6 +305,7 @@ in
   };
 
   home.file = {
+    ".fehbg".source = ./../../dots/feh/.fehbg;
     ".wallpaper".source = ./../../dots/wallpaper;
   };
 }
