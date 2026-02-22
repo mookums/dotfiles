@@ -37,5 +37,6 @@
     feh
     arandr
     xclip
+    flameshot
   ];
 }
