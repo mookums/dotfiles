@@ -77,6 +77,7 @@ let
     vlc
     prismlauncher
     slack
+    libreoffice
     # Video
     obs-studio
     kdePackages.kdenlive
