@@ -9,6 +9,7 @@ let
   hostStaticIp = "5.78.88.217";
   stateVersion = "25.05";
   headscalePort = 9892;
+  goatcounterPort = 9893;
 in
 {
   imports = [
@@ -47,6 +48,9 @@ in
         "tail.muki.gg".extraConfig = ''
           reverse_proxy 127.0.0.1:${toString headscalePort}
         '';
+        "stats.muki.gg".extraConfig = ''
+          reverse_proxy 127.0.0.1:${toString goatcounterPort}
+        '';
       };
     };
 
@@ -67,6 +71,13 @@ in
           extra_records = [ ];
         };
       };
+    };
+
+    goatcounter = {
+      enable = true;
+      proxy = true;
+      address = "127.0.0.1";
+      port = goatcounterPort;
     };
   };
 }
