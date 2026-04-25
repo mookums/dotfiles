@@ -6,44 +6,50 @@
   ...
 }:
 let
-  essentialPackages = with pkgs; [
-    # Development
-    # alacritty
-    ghostty
-    git
-    zellij
+  cliPackages = with pkgs; [
+    # Shell / Navigation
     fzf
     tmux
     twm
     ripgrep
+    yazi
+    btop
     fastfetch
+    # System / Network
     sshfs
     picocom
-    btop
-    yazi
+    # Debug / Trace
     gdb
     lldb
     valgrind
     perf
     gf
-    # Apps
+    # VCS
+    git
+    # Cache
+    sccache
+  ];
+
+  guiPackages = with pkgs; [
+    ghostty
     feh
     zathura
-    # GTK themes
+  ];
+
+  themePackages = with pkgs; [
     dconf
     papirus-icon-theme
-    # Fonts
     nerd-fonts.jetbrains-mono
   ];
 
-  engiPackages = with pkgs; [
-    # Development
-    bruno
+  profilingPackages = with pkgs; [
     hotspot
     heaptrack
     hyperfine
     poop
-    # CAD
+  ];
+
+  cadPackages = with pkgs; [
     (pkgs.symlinkJoin {
       name = "freecad-wrapped";
       paths = [ freecad ];
@@ -64,9 +70,6 @@ let
   ];
 
   miscPackages = with pkgs; [
-    # Apps
-    chromium
-    thunderbird
     gimp
     darktable
     (discord.override {
@@ -78,21 +81,22 @@ let
     prismlauncher
     slack
     libreoffice
-    # Video
     obs-studio
     kdePackages.kdenlive
     tenacity
   ];
 
   selectedPackages =
-    if minimal then essentialPackages else essentialPackages ++ engiPackages ++ miscPackages;
+    if minimal then
+      cliPackages ++ themePackages
+    else
+      cliPackages ++ guiPackages ++ themePackages ++ profilingPackages ++ cadPackages ++ miscPackages;
 
   dotfilesPath = "${config.home.homeDirectory}/.dotfiles";
 
   sharedAliases = {
     # Generic Aliases
     nxh = "nix develop -c hx";
-    nxy = "nix develop -c yazi";
     nxd = "nix develop";
   };
 
@@ -102,9 +106,8 @@ let
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
     BROWSER = "firefox";
-    # NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    # XDG_CURRENT_DESKTOP = "niri";
+    RUSTC_WRAPPER = "sccache";
   };
 in
 {
@@ -117,6 +120,10 @@ in
   home.sessionVariables = sharedSessionVariables;
 
   programs = {
+    chromium = {
+      enable = true;
+    };
+
     firefox = {
       enable = true;
       languagePacks = [ "en-US" ];
@@ -188,21 +195,6 @@ in
       };
     };
 
-    neovim = {
-      enable = true;
-      # package = pkgs.neovim;
-      extraPackages = with pkgs; [
-        # Lua
-        luarocks
-        luajitPackages.jsregexp
-        # Treesitter
-        gcc
-        # Nil for all the flakes.
-        nil
-        nixfmt-rfc-style
-      ];
-    };
-
     helix = {
       enable = true;
       extraPackages = with pkgs; [
@@ -250,11 +242,6 @@ in
     enable = true;
 
     desktopEntries = {
-      zathura = {
-        name = "Zathura";
-        exec = "zathura %f";
-        mimeType = [ "application/pdf" ];
-      };
       feh = {
         name = "Feh";
         exec = "feh %f";
@@ -287,17 +274,12 @@ in
     };
 
     configFile = {
-      # "alacritty".source = ./../../dots/alacritty;
       "ghostty".source = ./../../dots/ghostty;
       "sway".source = ./../../dots/sway;
       "i3".source = ./../../dots/i3;
-      # "niri".source = ./../../dots/niri;
-      # "waybar".source = ./../../dots/waybar;
       "helix".source = ./../../dots/helix;
-      # "nvim".source = ./../../dots/nvim;
       "rofi".source = ./../../dots/rofi/config;
       "tmux".source = ./../../dots/tmux;
-      # "zellij".source = ./../../dots/zellij;
     };
 
     dataFile = {

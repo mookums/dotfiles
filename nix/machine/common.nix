@@ -52,6 +52,7 @@ in
         "video"
         "libvirtd"
         "docker"
+        "dialout"
       ];
     };
   };
@@ -80,8 +81,7 @@ in
     wget
     curl
     git
-    zellij
-    # tmux
+    tmux
     zip
     unzip
     file
