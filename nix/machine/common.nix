@@ -51,7 +51,7 @@ in
         "networkmanager"
         "video"
         "libvirtd"
-        "docker"
+        "podman"
         "dialout"
       ];
     };
