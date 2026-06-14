@@ -23,8 +23,6 @@
 
   services.libinput.enable = true;
 
-  programs.light.enable = true;
-
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -38,5 +36,6 @@
     arandr
     xclip
     flameshot
+    brightnessctl
   ];
 }
