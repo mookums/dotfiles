@@ -34,6 +34,7 @@ let
     ghostty
     feh
     zathura
+    sqlitebrowser
   ];
 
   themePackages = with pkgs; [
@@ -199,7 +200,7 @@ in
       enable = true;
       extraPackages = with pkgs; [
         nil
-        nixfmt-rfc-style
+        nixfmt
         prettier
       ];
     };
@@ -261,8 +262,8 @@ in
       defaultApplications = {
         "application/pdf" = "zathura.desktop";
 
-        "images/jpeg" = "feh.desktop";
-        "images/png" = "feh.desktop";
+        "image/jpeg" = "feh.desktop";
+        "image/png" = "feh.desktop";
         # Firefox as Browser
         "default-web-browser" = "firefox.desktop";
         "text/html" = "firefox.desktop";
