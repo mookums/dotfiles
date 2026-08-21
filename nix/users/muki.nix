@@ -18,6 +18,7 @@ let
     # System / Network
     sshfs
     picocom
+    miniserve
     # Debug / Trace
     gdb
     lldb

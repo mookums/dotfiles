@@ -9,6 +9,9 @@
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    sidra.url = "github:wimpysworld/sidra";
+    sidra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -17,6 +20,7 @@
       nixpkgs,
       agenix,
       home-manager,
+      sidra,
       ...
     }:
     let
@@ -46,6 +50,7 @@
               self
               home-manager
               agenix
+              sidra
               ;
           };
         };

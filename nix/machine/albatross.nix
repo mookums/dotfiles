@@ -4,6 +4,7 @@
   pkgs,
   agenix,
   home-manager,
+  sidra,
   ...
 }:
 let
@@ -87,4 +88,8 @@ in
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  environment.systemPackages = [
+    sidra.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 }
