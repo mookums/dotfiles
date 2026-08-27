@@ -4,6 +4,7 @@
   pkgs,
   agenix,
   home-manager,
+  nix-flatpak,
   sidra,
   ...
 }:
@@ -19,6 +20,7 @@ in
     # ../display/niri.nix
     agenix.nixosModules.default
     home-manager.nixosModules.home-manager
+    nix-flatpak.nixosModules.nix-flatpak
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -60,6 +62,24 @@ in
       userServices = true;
       addresses = true;
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  services.flatpak = {
+    enable = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+    packages = [
+      "org.vinegarhq.Sober"
+    ];
   };
 
   virtualisation = {

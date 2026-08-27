@@ -10,6 +10,8 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
+
     sidra.url = "github:wimpysworld/sidra";
     sidra.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -20,6 +22,7 @@
       nixpkgs,
       agenix,
       home-manager,
+      nix-flatpak,
       sidra,
       ...
     }:
@@ -50,6 +53,7 @@
               self
               home-manager
               agenix
+              nix-flatpak
               sidra
               ;
           };
