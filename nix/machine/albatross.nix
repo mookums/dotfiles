@@ -100,6 +100,9 @@ in
   boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;

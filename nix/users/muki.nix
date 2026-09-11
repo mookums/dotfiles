@@ -29,6 +29,9 @@ let
     git
     # Cache
     sccache
+
+    claude-code
+    opencode
   ];
 
   guiPackages = with pkgs; [
@@ -86,6 +89,7 @@ let
     obs-studio
     kdePackages.kdenlive
     tenacity
+
   ];
 
   selectedPackages =

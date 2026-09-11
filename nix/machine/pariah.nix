@@ -72,4 +72,8 @@ in
 
   programs.nix-ld.enable = true;
   programs.virt-manager.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
 }
