@@ -15,8 +15,8 @@ in
 {
   imports = [
     ./hardware/albatross.nix
-    ../display/i3.nix
-    # ../display/sway.nix
+    # ../display/i3.nix
+    ../display/sway.nix
     # ../display/niri.nix
     agenix.nixosModules.default
     home-manager.nixosModules.home-manager
