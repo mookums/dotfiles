@@ -111,7 +111,7 @@ let
     EDITOR = "hx";
     GIT_EDITOR = "hx";
     DOTFILES = dotfilesPath;
-    BROWSER = "firefox";
+    BROWSER = "chromium";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     RUSTC_WRAPPER = "sccache";
   };
@@ -128,85 +128,6 @@ in
   programs = {
     chromium = {
       enable = true;
-      package = pkgs.ungoogled-chromium;
-
-      extensions = [
-        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
-        { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
-        { id = "mdjildafknihdffpkfmmpnpoiajfjnjd"; } # Consent-O-Matic
-        { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      ];
-    };
-
-    firefox = {
-      enable = true;
-      languagePacks = [ "en-US" ];
-
-      # about:policies#documentation
-      policies = {
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-        DisablePocket = true;
-        DontCheckDefaultBrowser = true;
-        NoDefaultBookmarks = true;
-        DisableProfileImport = true;
-        DisplayBookmarksToolbar = "never";
-        DisplayMenuBar = "default-off";
-        SearchBar = "unified";
-
-        ExtensionSettings = {
-          # uBlock Origin
-          "uBlock0@raymondhill.net" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "force_installed";
-          };
-          # Privacy Badger
-          "jid1-MnnxcxisBPnSXQ@jetpack" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-            installation_mode = "force_installed";
-          };
-          # Bitwarden
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-            installation_mode = "force_installed";
-          };
-          # Consent-O-Matic
-          "gdpr@cavi.au.dk" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/consent-o-matic/latest.xpi";
-            installation_mode = "force_installed";
-          };
-        };
-
-        # about:config
-        Preferences = {
-          "sidebar.verticalTabs" = {
-            Value = true;
-            Status = "locked";
-          };
-          "browser.ml.chat.enabled" = {
-            Value = false;
-            Status = "locked";
-          };
-          "browser.newtabpage.enabled" = {
-            Value = false;
-            Status = "locked";
-          };
-          "browser.newtabpage.activity-stream.feeds.section.topstories" = {
-            Value = false;
-            Status = "locked";
-          };
-          "browser.newtabpage.activity-stream.feeds.topsites" = {
-            Value = false;
-            Status = "locked";
-          };
-        };
-      };
     };
 
     helix = {
@@ -277,13 +198,13 @@ in
 
         "image/jpeg" = "feh.desktop";
         "image/png" = "feh.desktop";
-        # Firefox as Browser
-        "default-web-browser" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
+        # chromium as Browser
+        "default-web-browser" = "chromium.desktop";
+        "text/html" = "chromium.desktop";
+        "x-scheme-handler/http" = "chromium.desktop";
+        "x-scheme-handler/https" = "chromium.desktop";
+        "x-scheme-handler/about" = "chromium.desktop";
+        "x-scheme-handler/unknown" = "chromium.desktop";
       };
 
     };

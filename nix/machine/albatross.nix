@@ -19,6 +19,7 @@ in
     ../display/sway.nix
     # ../display/niri.nix
     agenix.nixosModules.default
+    ../module/chromium.nix
     home-manager.nixosModules.home-manager
     nix-flatpak.nixosModules.nix-flatpak
     {
