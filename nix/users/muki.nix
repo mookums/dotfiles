@@ -27,6 +27,7 @@ let
     gf
     # VCS
     git
+    github-cli
     # Cache
     sccache
 
