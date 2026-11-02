@@ -195,7 +195,7 @@
             n_completions = 1,
             context_window = 2048,
             virtualtext = {
-              auto_trigger_ft = {},
+              auto_trigger_ft = { "*" },
               keymap = {
                 accept = '<A-A>',
                 accept_line = '<A-a>',
@@ -212,19 +212,19 @@
                 end_point = 'http://albatross:11434/v1/completions',
                 model = 'qwen2.5-coder:7b',
                 optional = {
-                  max_tokens = 56,
+                  max_tokens = 256,
                   top_p = 0.9,
                 },
               },
             },
           }
 
-          vim.keymap.set('i', '<A-/>', require('minuet.virtualtext').action.next, {
-            desc = 'minuet: suggest now',
-          })
+           -- vim.keymap.set('i', '<A-/>', require('minuet.virtualtext').action.next, {
+           --   desc = 'minuet: suggest now',
+           -- })
 
           require('which-key').add({
-            { '<A-/>', desc = 'minuet: suggest now', mode = 'i' },
+             -- { '<A-/>', desc = 'minuet: suggest now', mode = 'i' },
             { '<A-A>', desc = 'minuet: accept full suggestion', mode = 'i' },
             { '<A-a>', desc = 'minuet: accept one line', mode = 'i' },
             { '<A-z>', desc = 'minuet: accept n lines', mode = 'i' },
