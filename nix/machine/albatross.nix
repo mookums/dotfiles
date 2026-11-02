@@ -104,6 +104,14 @@ in
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+    host = "0.0.0.0";
+    port = 11434;
+    loadModels = [ "qwen2.5-coder:7b" ];
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;

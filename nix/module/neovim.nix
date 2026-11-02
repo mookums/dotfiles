@@ -187,13 +187,71 @@
         '';
       }
       {
+        plugin = minuet-ai-nvim;
+        type = "lua";
+        config = ''
+          require('minuet').setup {
+            provider = 'openai_fim_compatible',
+            n_completions = 1,
+            context_window = 2048,
+            virtualtext = {
+              auto_trigger_ft = {},
+              keymap = {
+                accept = '<A-A>',
+                accept_line = '<A-a>',
+                accept_n_lines = '<A-z>',
+                prev = '<A-[>',
+                next = '<A-]>',
+                dismiss = '<A-e>',
+              },
+            },
+            provider_options = {
+              openai_fim_compatible = {
+                api_key = 'TERM',
+                name = 'Ollama',
+                end_point = 'http://albatross:11434/v1/completions',
+                model = 'qwen2.5-coder:7b',
+                optional = {
+                  max_tokens = 56,
+                  top_p = 0.9,
+                },
+              },
+            },
+          }
+
+          vim.keymap.set('i', '<A-/>', require('minuet.virtualtext').action.next, {
+            desc = 'minuet: suggest now',
+          })
+
+          require('which-key').add({
+            { '<A-/>', desc = 'minuet: suggest now', mode = 'i' },
+            { '<A-A>', desc = 'minuet: accept full suggestion', mode = 'i' },
+            { '<A-a>', desc = 'minuet: accept one line', mode = 'i' },
+            { '<A-z>', desc = 'minuet: accept n lines', mode = 'i' },
+            { '<A-[>', desc = 'minuet: prev suggestion', mode = 'i' },
+            { '<A-]>', desc = 'minuet: next suggestion', mode = 'i' },
+            { '<A-e>', desc = 'minuet: dismiss suggestion', mode = 'i' },
+          })
+        '';
+      }
+      {
         plugin = blink-cmp;
         type = "lua";
         config = ''
           require('blink.cmp').setup({
-            keymap = { preset = 'default' },
+            keymap = { preset = 'super-tab' },
             appearance = { nerd_font_variant = 'mono' },
             sources = { default = { 'lsp', 'path', 'buffer' } },
+          })
+
+          require('which-key').add({
+            { '<Tab>', desc = 'blink: accept / snippet forward', mode = 'i' },
+            { '<S-Tab>', desc = 'blink: snippet backward', mode = 'i' },
+            { '<C-space>', desc = 'blink: show / toggle docs', mode = 'i' },
+            { '<C-e>', desc = 'blink: cancel', mode = 'i' },
+            { '<C-n>', desc = 'blink: select next', mode = 'i' },
+            { '<C-p>', desc = 'blink: select prev', mode = 'i' },
+            { '<C-k>', desc = 'blink: show/hide signature', mode = 'i' },
           })
         '';
       }
