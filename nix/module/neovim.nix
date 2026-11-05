@@ -29,6 +29,7 @@
             keywordStyle = { italic = true },
           }
           vim.cmd('colorscheme kanagawa-dragon')
+          vim.api.nvim_set_hl(0, '@module', { link = 'Normal' })
         '';
       }
       {
